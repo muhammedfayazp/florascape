@@ -25,7 +25,16 @@
                     style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;">FLORA</span><span
                     style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: #fff;">SCAPE</span>
             </a>
-            <nav>
+
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+
+            <nav id="main-nav">
                 <a href="{{ route('home') }}" class="nav-link">Home</a>
                 <a href="{{ route('services') }}" class="nav-link">Services</a>
                 <a href="{{ route('about') }}" class="nav-link">About</a>
@@ -72,12 +81,28 @@
 
     <script>
         // Simple script to handle header transparency on scroll
-        window.addEventListener('scroll', function () {
+        // One-time setup for scroll and mobile menu
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll effect
             const header = document.querySelector('.site-header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.getElementById('main-nav');
+
+            if (menuBtn && nav) {
+                menuBtn.addEventListener('click', () => {
+                    menuBtn.classList.toggle('active');
+                    nav.classList.toggle('active');
+                    document.body.classList.toggle('no-scroll');
+                });
             }
         });
     </script>
