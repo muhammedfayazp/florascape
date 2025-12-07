@@ -14,7 +14,7 @@
         rel="stylesheet">
 
     <!-- Styles -->
-    @vite(['resources/css/web.css'])
+    @vite(['resources/css/web.css', 'resources/js/app.jsx'])
 </head>
 
 <body>

@@ -1,28 +1,8 @@
 @extends('layouts.web')
 
 @section('content')
-    {{-- Hero Section --}}
-    <section class="hero-section"
-        style="position: relative; height: 100vh; display: flex; align-items: center; overflow: hidden;">
-        {{-- Background Image Placeholder - using a gradient for now, normally would be an image --}}
-        <div
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1558905540-212847de5fd6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover; opacity: 1;">
-        </div>
-
-        <div class="container animate-fade-in" style="color: white; text-align: center;">
-            <h1 style="font-size: 4rem; margin-bottom: 1.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.3);">Elevate Your
-                Outdoor Living</h1>
-            <p style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                Award-winning landscaping services blending nature's beauty with architectural precision.
-            </p>
-            <div class="flex justify-center gap-4">
-                <a href="{{ route('contact') }}" class="btn btn-primary"
-                    style="background-color: var(--color-accent); color: var(--color-bg-dark);">Get a Consultation</a>
-                <a href="{{ route('services') }}" class="btn btn-outline" style="border-color: white; color: white;">View
-                    Our Work</a>
-            </div>
-        </div>
-    </section>
+    {{-- Hero Section (React) --}}
+    <div id="hero-slider-root"></div>
 
     {{-- Services Section --}}
     <section class="section bg-off-white">
