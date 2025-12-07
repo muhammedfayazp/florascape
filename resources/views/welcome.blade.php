@@ -36,6 +36,13 @@
         </div>
     </section>
 
+    {{-- Cost Calculator Section --}}
+    <section class="calculator-section">
+        <div class="container">
+            <div id="cost-calculator-root"></div>
+        </div>
+    </section>
+
     {{-- Services Section --}}
     <section class="section bg-off-white">
         <div class="container">
