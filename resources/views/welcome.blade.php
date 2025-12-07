@@ -4,6 +4,38 @@
     {{-- Hero Section (React) --}}
     <div id="hero-slider-root"></div>
 
+    {{-- About Us Section --}}
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1593113646773-028c619d4c72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Florascape Landscaping Professional at Work">
+                </div>
+                <div class="about-text">
+                    <p class="about-label">About Us</p>
+                    <h2 class="about-heading">Creating Outdoor Masterpieces Across the UAE</h2>
+                    <p class="about-paragraph">
+                        We FLORASCAPE LANDSCAPE LLC, is a dynamic and creative landscaping startup leading by experienced
+                        professionals dedicated to transforming outdoor spaces into breathtaking and functional
+                        environments.
+                    </p>
+                    <p class="about-paragraph">
+                        Founded on the principles of creativity, sustainability, and professionalism, we specialize in
+                        providing comprehensive landscaping services tailored to meet the unique needs and preferences of
+                        our clients. With a passionate team of experts and a commitment to excellence, we aim to set new
+                        standards of quality and reliability in the landscaping industry.
+                    </p>
+                    <p class="about-paragraph">
+                        Our mission is to enrich lives and enhance communities by creating stunning outdoor landscapes that
+                        inspire and delight. We strive to exceed our clients' expectations through unparalleled
+                        craftsmanship, attention to detail, and environmentally conscious practices.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- Services Section --}}
     <section class="section bg-off-white">
         <div class="container">

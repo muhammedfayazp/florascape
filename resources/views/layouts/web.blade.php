@@ -4,7 +4,114 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Florascape - Premium Landscaping Services')</title>
+
+    {{-- SEO Meta Tags --}}
+    <title>@yield('title', 'Florascape - Premium Landscaping Services in UAE | Expert Garden Design & Maintenance')
+    </title>
+    <meta name="description"
+        content="@yield('description', 'Transform your outdoor space with Florascape - UAEs leading landscaping company. Professional landscape design, hardscaping, pool installation, and maintenance services. Award-winning craftsmanship for residential and commercial projects.')">
+    <meta name="keywords"
+        content="landscaping UAE, garden design Dubai, landscape services, hardscaping, pool installation, outdoor design, garden maintenance, commercial landscaping, residential landscaping, lawn care UAE">
+    <meta name="author" content="Florascape Landscape LLC">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    {{-- Open Graph / Facebook --}}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('og_title', 'Florascape - Premium Landscaping Services in UAE')">
+    <meta property="og:description"
+        content="@yield('og_description', 'Expert landscaping services transforming outdoor spaces across the UAE. From custom designs to professional maintenance.')">
+    <meta property="og:image" content="{{ asset('images/og-image.jpg') }}">
+    <meta property="og:site_name" content="Florascape">
+    <meta property="og:locale" content="en_AE">
+
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="@yield('twitter_title', 'Florascape - Premium Landscaping Services in UAE')">
+    <meta name="twitter:description"
+        content="@yield('twitter_description', 'Expert landscaping services transforming outdoor spaces across the UAE.')">
+    <meta name="twitter:image" content="{{ asset('images/twitter-card.jpg') }}">
+
+    {{-- JSON-LD Structured Data --}}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Florascape Landscape LLC",
+      "image": "{{ url('/') }}/images/logo.png",
+      "@id": "{{ url('/') }}",
+      "url": "{{ url('/') }}",
+      "telephone": "+971-XX-XXX-XXXX",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "UAE",
+        "addressLocality": "Dubai",
+        "addressRegion": "Dubai",
+        "addressCountry": "AE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 25.2048,
+        "longitude": 55.2708
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "08:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://www.facebook.com/florascape",
+        "https://www.instagram.com/florascape",
+        "https://www.linkedin.com/company/florascape"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Arab Emirates"
+      },
+      "description": "Professional landscaping services in UAE specializing in landscape design, hardscaping, pool installation, and garden maintenance for residential and commercial properties.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Landscaping Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Landscape Design",
+              "description": "Custom 3D landscape design and planning services"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Hardscaping",
+              "description": "Patios, walkways, retaining walls, and outdoor living spaces"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Garden Maintenance",
+              "description": "Professional lawn care and garden maintenance services"
+            }
+          }
+        ]
+      }
+    }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

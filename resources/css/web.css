@@ -5,11 +5,13 @@
 
 :root {
     /* Colors */
-    --color-primary: #2d5a27;
+    --color-primary: #4D9D45;
     /* Deep Forest Green */
-    --color-primary-light: #4a8a40;
-    --color-accent: #d4a373;
-    /* Earthy Sand/Gold */
+    --color-primary-light: #6BB05F;
+    --color-primary-bg: #E8F5E6;
+    /* Light green background - matches primary */
+    --color-accent: #E89B43;
+    /* Warm Amber - complements primary green */
     --color-text-dark: #1a1a1a;
     --color-text-light: #f5f5f5;
     --color-bg-light: #ffffff;
@@ -723,4 +725,69 @@ img {
     position: static;
     text-align: left;
     /* reset */
+}
+
+/* ========================================
+   About Us Section
+   ======================================== */
+.about-section {
+    padding: 6rem 0;
+    background: #ffffff;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+    padding-top: 1rem;
+}
+
+.about-label {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.about-heading {
+    font-size: 2.5rem;
+    color: #4D9D45;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.about-paragraph {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.about-paragraph:last-child {
+    margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .about-heading {
+        font-size: 2rem;
+    }
 }
