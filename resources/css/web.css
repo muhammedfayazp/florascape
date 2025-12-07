@@ -541,56 +541,57 @@ img {
     z-index: -1;
 }
 
-/* Content Box (Left Side) */
+/* Content Box (Left Side) - Updated to Dark Overlay */
 .slide-content {
     position: absolute;
     top: 50%;
-    left: 10%;
+    left: 8%;
     transform: translateY(-50%);
     width: 45%;
-    max-width: 600px;
-    background: rgba(255, 255, 255, 0.15);
-    /* Subtle glass */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 3.5rem;
+    max-width: 650px;
+    background: rgba(0, 0, 0, 0.6);
+    /* Dark overlay */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 3rem;
     color: white;
     text-align: left;
-    border-left: 4px solid rgba(255, 255, 255, 0.8);
+    border-left: none;
+    /* Removed border */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: none;
+    border-radius: 2px;
 }
 
 .slide-title {
-    font-size: 2.8rem;
-    line-height: 1.2;
+    font-size: 3rem;
+    line-height: 1.15;
     margin-bottom: 1.2rem;
     font-weight: 700;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-shadow: none;
 }
 
 .slide-text {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     margin-bottom: 2.5rem;
-    opacity: 0.95;
-    line-height: 1.6;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    line-height: 1.5;
+    text-shadow: none;
     font-weight: 400;
+    color: #f0f0f0;
 }
 
 /* Green Button */
 .btn-green {
     background-color: #5faf57;
-    /* Matches image green */
     color: white;
     padding: 0.8rem 2rem;
     font-weight: 600;
     text-transform: uppercase;
     border: none;
     border-radius: 2px;
-    /* Sharp corners */
     display: inline-block;
 }
 
