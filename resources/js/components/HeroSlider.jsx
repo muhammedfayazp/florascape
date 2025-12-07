@@ -12,6 +12,9 @@ import 'swiper/css/effect-fade';
 // For now, we reuse the .hero-swiper structure so CSS mostly applies properly.
 
 const HeroSlider = () => {
+    const navigationPrevRef = React.useRef(null);
+    const navigationNextRef = React.useRef(null);
+
     return (
         <Swiper
             modules={[Navigation, Pagination, Autoplay, EffectFade]}
@@ -23,26 +26,28 @@ const HeroSlider = () => {
                 delay: 5000,
                 disableOnInteraction: false,
             }}
-            // We use custom nav buttons which we need to render inside our component structure
-            // However, Swiper React standard implementation wraps slides. 
-            // We can put controls OUTSIDE or use Swiper's slot mechanism if needed, 
-            // but standard absolute positioning + class names works if the html structure is right.
-            // Actually, for custom nav, referencing by class works if they are inside the container or if updated via ref.
-            // Simplest way: use navigation={{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }} and render them.
+            onBeforeInit={(swiper) => {
+                swiper.params.navigation.prevEl = navigationPrevRef.current;
+                swiper.params.navigation.nextEl = navigationNextRef.current;
+            }}
             navigation={{
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+                prevEl: navigationPrevRef.current,
+                nextEl: navigationNextRef.current,
             }}
             pagination={{
                 el: '.swiper-pagination',
-                type: 'fraction',
+                type: 'custom',
+                renderCustom: function (swiper, current, total) {
+                    // Adding a key to the current number span forces a re-render/animation restart
+                    return `<span class="swiper-pagination-current" key="${current}">${current}</span> / <span class="swiper-pagination-total">${total}</span>`;
+                }
             }}
             className="hero-swiper"
         >
             <SwiperSlide>
                 <div className="slide-bg" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')" }}></div>
                 <div className="slide-content">
-                    <h1 className="slide-title">Transform Your All Outdoors into a Luxury Oasis</h1>
+                    <h1 className="slide-title">Transform Your Outdoors into a Luxury Oasis</h1>
                     <p className="slide-text">Premium Landscaping & Pool Solutions in the UAE | Residential & Commercial Projects</p>
                     <div className="slide-btn">
                         <a href="/contact" className="btn-green">Get A Quote</a>
@@ -72,18 +77,18 @@ const HeroSlider = () => {
                 </div>
             </SwiperSlide>
 
-            {/* Controls Bar (Inside Swiper container so default class targeting works easily) */}
+            {/* Controls Bar */}
             <div className="controls-bar">
                 <div className="swiper-pagination"></div>
                 <div className="nav-controls">
-                    <div className="swiper-nav-btn swiper-button-prev">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6" style={{ width: '20px' }}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    <div ref={navigationPrevRef} className="swiper-nav-btn swiper-button-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6" style={{ width: '28px' }}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
                         </svg>
                     </div>
-                    <div className="swiper-nav-btn swiper-button-next">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6" style={{ width: '20px' }}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                    <div ref={navigationNextRef} className="swiper-nav-btn swiper-button-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6" style={{ width: '28px' }}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                         </svg>
                     </div>
                 </div>

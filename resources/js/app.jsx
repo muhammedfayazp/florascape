@@ -7,15 +7,12 @@ const mountReact = () => {
     const rootElement = document.getElementById('hero-slider-root');
 
     if (rootElement) {
-        console.log('Found #hero-slider-root, mounting React component...');
         const root = createRoot(rootElement);
         root.render(
             <React.StrictMode>
                 <HeroSlider />
             </React.StrictMode>
         );
-    } else {
-        console.error('ERROR: #hero-slider-root not found in DOM! (Check if script is running before DOM load)');
     }
 };
 
