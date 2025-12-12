@@ -114,10 +114,19 @@
 
                 <div class="grid grid-cols-1 gap-4">
                     <div class="flex items-center gap-4">
-                        <div style="background: var(--color-off-white); padding: 1rem; border-radius: 50%;">🏆</div>
+                        <div style="background: var(--color-off-white); padding: 1rem; border-radius: 50%;">✨</div>
                         <div>
-                            <h4 style="margin-bottom: 0.25rem;">Award Winning Design</h4>
-                            <p style="font-size: 0.9rem; color: #666;">Recognized excellence in landscape architecture.</p>
+                            <h4 style="margin-bottom: 0.25rem;">Quality Workmanship</h4>
+                            <p style="font-size: 0.9rem; color: #666;">Premium materials and meticulous attention to detail
+                                in every project.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div style="background: var(--color-off-white); padding: 1rem; border-radius: 50%;">⏱️</div>
+                        <div>
+                            <h4 style="margin-bottom: 0.25rem;">Timely Delivery</h4>
+                            <p style="font-size: 0.9rem; color: #666;">Projects completed on schedule with efficient project
+                                management.</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
