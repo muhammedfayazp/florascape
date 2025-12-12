@@ -1,134 +1,166 @@
 @extends('layouts.web')
 
-@section('title', 'Our Services - Florascape')
+@section('title', 'Our Services - Professional Landscaping Services in UAE | Florascape')
 
 @section('content')
+    {{-- Hero Section --}}
     <div class="bg-primary text-center" style="padding: 8rem 0 4rem; color: white;">
         <div class="container animate-fade-in">
-            <h1>Our Services</h1>
-            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">Comprehensive landscaping
-                solutions designed to enhance the beauty and value of your property.</p>
+            <p
+                style="font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; opacity: 0.9;">
+                Services Provided</p>
+            <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">Design. Build. Maintain.</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto;">
+                Comprehensive landscaping solutions from pool construction to garden maintenance
+            </p>
         </div>
     </div>
 
+    {{-- Main Services Grid --}}
     <section class="section">
         <div class="container">
-            {{-- Service Category 1 --}}
-            <div class="grid md:grid-cols-2 gap-8 items-center" style="margin-bottom: 6rem;">
-                <div>
-                    <img src="https://images.unsplash.com/photo-1598902168918-638f85697669?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                        alt="Landscape Design" style="border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                </div>
-                <div>
-                    <h2 class="text-primary">Landscape Design & Architecture</h2>
-                    <p style="color: #666; margin-bottom: 1.5rem;">
-                        Our design process begins with a vision. We work closely with you to understand your lifestyle,
-                        preferences, and the unique characteristics of your property.
-                    </p>
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <h2 class="text-primary">Our Complete Service Portfolio</h2>
+                <p style="color: #666; max-width: 700px; margin: 1rem auto 0;">
+                    From design to installation to ongoing maintenance, we provide complete landscaping solutions
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                {{-- Swimming Pool & Water Features --}}
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🏊</div>
+                    <h3>Swimming Pool & Water Feature Design and Construction</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Custom swimming pools, decorative fountains, ponds, and
+                        water features designed to enhance your outdoor living experience.</p>
                     <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">✓ 3D Visualization & Rendering</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Master Planning</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Site Analysis & Consultation</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Planting Plans</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Custom pool design and construction</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Water fountains and decorative features</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Pond and lake installation</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Waterfall integration</li>
+                    </ul>
+                </div>
+
+                {{-- Pool & Water Feature Maintenance --}}
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">💦</div>
+                    <h3>Swimming Pool & Water Feature Care and Maintenance</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Professional cleaning, chemical balancing, and
+                        maintenance to keep your water features pristine year-round.</p>
+                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
+                        <li style="margin-bottom: 0.5rem;">✓ Regular pool cleaning and servicing</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Chemical balance management</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Equipment inspection and repair</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Pond and fountain maintenance</li>
+                    </ul>
+                </div>
+
+                {{-- Automatic Irrigation --}}
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">💧</div>
+                    <h3>Automatic Irrigation System</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Smart irrigation solutions designed for water efficiency
+                        and optimal plant health in UAE's climate.</p>
+                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
+                        <li style="margin-bottom: 0.5rem;">✓ Custom irrigation design and installation</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Smart controller integration</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Drip and sprinkler systems</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Water conservation solutions</li>
+                    </ul>
+                </div>
+
+                {{-- Indoor Garden --}}
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🪴</div>
+                    <h3>Indoor Garden Installation, Care & Maintenance</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Transform interior spaces with lush greenery, from living
+                        walls to potted plant arrangements.</p>
+                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
+                        <li style="margin-bottom: 0.5rem;">✓ Indoor plant selection and installation</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Living wall design and construction</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Regular maintenance and care</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Plant health monitoring</li>
+                    </ul>
+                </div>
+
+                {{-- Outdoor Garden Maintenance --}}
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌳</div>
+                    <h3>Outdoor Garden Care & Maintenance</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Comprehensive outdoor maintenance services to keep your
+                        landscape healthy, vibrant, and beautiful.</p>
+                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
+                        <li style="margin-bottom: 0.5rem;">✓ Lawn mowing and edging</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Pruning and trimming</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Fertilization and pest control</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Seasonal plantings and cleanups</li>
+                    </ul>
+                </div>
+
+                {{-- Hardscaping --}}
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🧱</div>
+                    <h3>Hardscaping</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Durable and beautiful hardscape elements that define and
+                        enhance your outdoor living spaces.</p>
+                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
+                        <li style="margin-bottom: 0.5rem;">✓ Tile work and paving</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Rockery gardens and paths</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Wood composite & timber decks</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Walls, fences, and trellis</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Stepping stones and gravel work</li>
+                        <li style="margin-bottom: 0.5rem;">✓ Outdoor structures and playgrounds</li>
                     </ul>
                 </div>
             </div>
-
-            {{-- Service Category 2 --}}
-            <div class="grid md:grid-cols-2 gap-8 items-center" style="margin-bottom: 6rem;">
-                <div style="order: 2;"> <!-- Image on right for desktop -->
-                    <img src="https://images.unsplash.com/photo-1621257088926-d343b4694406?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                        alt="Hardscaping" style="border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                </div>
-                <div style="order: 1;">
-                    <h2 class="text-primary">Hardscaping & Construction</h2>
-                    <p style="color: #666; margin-bottom: 1.5rem;">
-                        Define your outdoor space with structural elegance. Our hardscaping services provide the foundation
-                        for your outdoor living area.
-                    </p>
-                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">✓ Custom Patios & Walkways</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Retaining Walls</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Outdoor Kitchens & Fire Pits</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Pool Decks</li>
-                    </ul>
-                </div>
-            </div>
-
-            {{-- Service Category 3 --}}
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <img src="https://images.unsplash.com/photo-1557429287-b2e26467fc2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                        alt="Maintenance" style="border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                </div>
-                <div>
-                    <h2 class="text-primary">Premium Maintenance</h2>
-                    <p style="color: #666; margin-bottom: 1.5rem;">
-                        Keep your landscape looking pristine year-round with our comprehensive maintenance packages.
-                    </p>
-                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">✓ Weekly Lawn Care</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Pruning & Trimming</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Seasonal Clean-ups</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Fertilization Programs</li>
-                    </ul>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    <section class="section bg-off-white text-center">
+    {{-- Specialized Services --}}
+    <section class="section bg-off-white">
         <div class="container">
-            <h2 class="text-primary">Detailed Pricing</h2>
-            <p style="color: #666; max-width: 600px; margin: 0 auto 3rem;">Transparent pricing for our most popular service
-                packages.</p>
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <h2 class="text-primary">Specialized Services</h2>
+                <p style="color: #666; max-width: 700px; margin: 1rem auto 0;">
+                    Expert solutions for unique landscaping needs
+                </p>
+            </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-3 gap-6">
                 <div class="card">
-                    <h3 class="text-primary">Essential</h3>
-                    <p style="font-size: 2rem; font-weight: 700; margin: 1rem 0;">$299<span
-                            style="font-size: 1rem; font-weight: 400; color: #999;">/mo</span></p>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Perfect for maintaining a tidy lawn.</p>
-                    <ul style="text-align: left; margin-bottom: 2rem; color: #444;">
-                        <li style="margin-bottom: 0.5rem;">✓ Weekly Mowing</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Edging & Blowing</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Spring/Fall Cleanup</li>
-                    </ul>
-                    <a href="{{ route('contact') }}" class="btn btn-outline"
-                        style="border-color: var(--color-primary); color: var(--color-primary); width: 100%;">Choose
-                        Plan</a>
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌱</div>
+                    <h4>Artificial Grass and Plants Installation</h4>
+                    <p style="color: #666;">Low-maintenance, year-round green solutions perfect for UAE's climate</p>
                 </div>
-                <div class="card" style="border: 2px solid var(--color-accent); transform: scale(1.05);">
-                    <div
-                        style="background: var(--color-accent); color: white; padding: 0.25rem; font-size: 0.8rem; font-weight: 700; border-radius: 4px; display: inline-block; margin-bottom: 0.5rem;">
-                        POPULAR</div>
-                    <h3 class="text-primary">Premium</h3>
-                    <p style="font-size: 2rem; font-weight: 700; margin: 1rem 0;">$499<span
-                            style="font-size: 1rem; font-weight: 400; color: #999;">/mo</span></p>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Comprehensive care for your garden.</p>
-                    <ul style="text-align: left; margin-bottom: 2rem; color: #444;">
-                        <li style="margin-bottom: 0.5rem;">✓ All Essential Features</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Shrub Pruning</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Fertilization</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Weed Control</li>
-                    </ul>
-                    <a href="{{ route('contact') }}" class="btn btn-primary" style="width: 100%;">Choose Plan</a>
-                </div>
+
                 <div class="card">
-                    <h3 class="text-primary">Estate</h3>
-                    <p style="font-size: 2rem; font-weight: 700; margin: 1rem 0;">Call Us</p>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Tailored solutions for large properties.</p>
-                    <ul style="text-align: left; margin-bottom: 2rem; color: #444;">
-                        <li style="margin-bottom: 0.5rem;">✓ All Premium Features</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Irrigation Maintenance</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Seasonal Plantings</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Priority Scheduling</li>
-                    </ul>
-                    <a href="{{ route('contact') }}" class="btn btn-outline"
-                        style="border-color: var(--color-primary); color: var(--color-primary); width: 100%;">Contact Us</a>
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎨</div>
+                    <h4>Composite Works</h4>
+                    <p style="color: #666;">Children's play equipment, artificial rock work, landscape lighting, pergolas &
+                        gazebos, shade structures, timber bridges and decking</p>
+                </div>
+
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🏗️</div>
+                    <h4>Custom Landscape Features</h4>
+                    <p style="color: #666;">Bespoke outdoor elements tailored to your vision and property requirements</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    {{-- CTA Section --}}
+    <section class="section bg-primary text-center">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 1.5rem;">Ready to Transform Your Outdoor Space?</h2>
+            <p
+                style="color: rgba(255,255,255,0.9); margin-bottom: 2.5rem; font-size: 1.2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Contact us today for a free consultation and discover how we can bring your landscaping vision to life.
+            </p>
+            <a href="{{ route('contact') }}" class="btn btn-primary"
+                style="background-color: var(--color-accent); color: var(--color-bg-dark); font-size: 1.1rem; padding: 1.2rem 3rem;">
+                Get Free Consultation
+            </a>
         </div>
     </section>
 @endsection
