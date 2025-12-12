@@ -8,9 +8,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
-// Styles are largely handled by web.css global classes, but we can refine here if needed.
-// For now, we reuse the .hero-swiper structure so CSS mostly applies properly.
-
 const HeroSlider = () => {
     const navigationPrevRef = React.useRef(null);
     const navigationNextRef = React.useRef(null);
@@ -38,8 +35,8 @@ const HeroSlider = () => {
                 el: '.swiper-pagination',
                 type: 'custom',
                 renderCustom: function (swiper, current, total) {
-                    // Adding a key to the current number span forces a re-render/animation restart
-                    return `<span class="swiper-pagination-current" key="${current}">${current}</span> / <span class="swiper-pagination-total">${total}</span>`;
+                    // Fixed: Removed 'key' attribute from HTML string
+                    return `<span class="swiper-pagination-current">${current}</span> / <span class="swiper-pagination-total">${total}</span>`;
                 }
             }}
             className="hero-swiper"
@@ -82,12 +79,12 @@ const HeroSlider = () => {
                 <div className="swiper-pagination"></div>
                 <div className="nav-controls">
                     <div ref={navigationPrevRef} className="swiper-nav-btn swiper-button-prev">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6" style={{ width: '28px' }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" style={{ width: '28px', height: '28px' }}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
                         </svg>
                     </div>
                     <div ref={navigationNextRef} className="swiper-nav-btn swiper-button-next">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6" style={{ width: '28px' }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" style={{ width: '28px', height: '28px' }}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
                         </svg>
                     </div>
