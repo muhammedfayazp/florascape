@@ -3,6 +3,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import HeroSlider from './components/HeroSlider';
 import CostCalculator from './components/CostCalculator';
+import Gallery from './components/Gallery';
 
 const mountReact = () => {
     const rootElement = document.getElementById('hero-slider-root');
@@ -23,6 +24,17 @@ const mountReact = () => {
         calcRoot.render(
             <React.StrictMode>
                 <CostCalculator />
+            </React.StrictMode>
+        );
+    }
+
+    // Mount Gallery
+    const galleryElement = document.getElementById('gallery-root');
+    if (galleryElement) {
+        const galleryRoot = createRoot(galleryElement);
+        galleryRoot.render(
+            <React.StrictMode>
+                <Gallery />
             </React.StrictMode>
         );
     }

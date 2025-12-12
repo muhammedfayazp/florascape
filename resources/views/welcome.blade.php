@@ -78,7 +78,13 @@
         </div>
     </section>
 
+    {{-- Gallery Section --}}
+    <section id="gallery" class="gallery-section">
+        <div id="gallery-root"></div>
+    </section>
+
     {{-- Features / Why Choose Us --}}
+
     <section class="section">
         <div class="container grid md:grid-cols-2 gap-8 items-center">
             <div>
