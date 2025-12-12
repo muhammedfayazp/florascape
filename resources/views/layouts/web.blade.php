@@ -127,10 +127,8 @@
 <body>
   <header class="site-header">
     <div class="container flex justify-between items-center">
-      <a href="{{ route('home') }}" class="logo">
-        <span class="text-accent"
-          style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;">FLORA</span><span
-          style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: #fff;">SCAPE</span>
+      <a href="{{ route('home') }}" class="logo" style="display: flex; align-items: center;">
+        <img src="{{ asset('images/florascape-logo.png') }}" alt="Florascape Logo" style="height: 70px; width: auto;">
       </a>
 
       <button class="mobile-menu-btn" aria-label="Toggle Menu">
