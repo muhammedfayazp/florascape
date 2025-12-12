@@ -27,20 +27,6 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                {{-- Swimming Pool & Water Features --}}
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🏊</div>
-                    <h3>Swimming Pool & Water Feature Design and Construction</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Custom swimming pools, decorative fountains, ponds, and
-                        water features designed to enhance your outdoor living experience.</p>
-                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">✓ Custom pool design and construction</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Water fountains and decorative features</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Pond and lake installation</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Waterfall integration</li>
-                    </ul>
-                </div>
-
                 {{-- Pool & Water Feature Maintenance --}}
                 <div class="card">
                     <div style="font-size: 3rem; margin-bottom: 1rem;">💦</div>

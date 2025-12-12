@@ -5,76 +5,125 @@ const Gallery = () => {
     const [filter, setFilter] = useState('all');
 
     const projects = [
+        // Pool & Water Feature Maintenance
         {
             id: 1,
-            title: 'Luxury Residential Garden',
-            category: 'residential',
-            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            description: 'Modern luxury garden with lush landscaping and water features'
+            title: 'Pool Cleaning & Maintenance',
+            category: 'pool-maintenance',
+            image: 'https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            description: 'Professional pool cleaning and chemical balancing services'
         },
         {
             id: 2,
-            title: 'Commercial Property Landscaping',
-            category: 'commercial',
-            image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            description: 'Contemporary commercial landscaping with geometric designs'
+            title: 'Water Feature Maintenance',
+            category: 'pool-maintenance',
+            image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            description: 'Regular maintenance for fountains and water features'
         },
-        {
-            id: 3,
-            title: 'Backyard Pool Paradise',
-            category: 'residential',
-            image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            description: 'Elegant backyard transformation with pool and outdoor living'
-        },
+
+        // Hardscaping
         {
             id: 4,
-            title: 'Front Yard Transformation',
-            category: 'residential',
-            image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            description: 'Beautiful front yard with curved stone walls and vibrant plants'
+            title: 'Outdoor Patio & Deck',
+            category: 'hardscaping',
+            image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            description: 'Composite timber deck with built-in seating and pergola'
         },
         {
             id: 5,
-            title: 'Rooftop Garden Dubai',
-            category: 'commercial',
-            image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            description: 'Stunning rooftop garden with city skyline views'
+            title: 'Stone Pathway Design',
+            category: 'hardscaping',
+            image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            description: 'Natural stone stepping path through landscaped garden'
         },
         {
             id: 6,
-            title: 'Mediterranean Courtyard',
-            category: 'residential',
+            title: 'Retaining Wall & Steps',
+            category: 'hardscaping',
             image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            description: 'Mediterranean style courtyard with terracotta and olive trees'
+            description: 'Tiered retaining walls with integrated landscape lighting'
         },
+
+        // Irrigation Systems
         {
             id: 7,
-            title: 'Desert Landscape Design',
-            category: 'commercial',
-            image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            description: 'Sustainable desert landscaping with native plants'
+            title: 'Smart Irrigation Installation',
+            category: 'irrigation',
+            image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            description: 'Automated drip irrigation system with smart controller'
         },
         {
             id: 8,
-            title: 'Garden Pathway Design',
-            category: 'hardscaping',
-            image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            description: 'Custom stone pathway with integrated lighting'
+            title: 'Sprinkler System Design',
+            category: 'irrigation',
+            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            description: 'Comprehensive lawn irrigation with zone control'
         },
+
+        // Indoor Gardens
         {
             id: 9,
-            title: 'Outdoor Living Space',
-            category: 'hardscaping',
+            title: 'Living Wall Installation',
+            category: 'indoor-garden',
+            image: 'https://images.unsplash.com/photo-1597958636446-03ee2f7a4e6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            description: 'Vertical garden wall for office lobby with automated irrigation'
+        },
+        {
+            id: 10,
+            title: 'Indoor Plant Arrangement',
+            category: 'indoor-garden',
+            image: 'https://images.unsplash.com/photo-1463320726281-696a485928c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            description: 'Curated indoor plant collection for residential atrium'
+        },
+
+        // Outdoor Garden Maintenance
+        {
+            id: 11,
+            title: 'Residential Garden Landscape',
+            category: 'outdoor-maintenance',
+            image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            description: 'Lush garden with seasonal flowers and manicured lawn'
+        },
+        {
+            id: 12,
+            title: 'Commercial Property Landscaping',
+            category: 'outdoor-maintenance',
+            image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            description: 'Professional landscape maintenance for corporate campus'
+        },
+
+        // Specialized Services
+        {
+            id: 13,
+            title: 'Artificial Grass Installation',
+            category: 'specialized',
+            image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            description: 'Premium artificial turf for year-round green lawn'
+        },
+        {
+            id: 14,
+            title: 'Pergola & Shade Structure',
+            category: 'specialized',
             image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            description: 'Complete outdoor kitchen and entertainment area'
+            description: 'Custom wooden pergola with climbing plants and outdoor lighting'
+        },
+        {
+            id: 15,
+            title: 'Desert Landscape Design',
+            category: 'outdoor-maintenance',
+            image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            description: 'Sustainable desert landscaping with native plants'
         }
     ];
 
     const categories = [
-        { id: 'all', label: 'All Projects' },
-        { id: 'residential', label: 'Residential' },
-        { id: 'commercial', label: 'Commercial' },
-        { id: 'hardscaping', label: 'Hardscaping' }
+        { id: 'all', label: 'All Projects', icon: '🌿' },
+        { id: 'pool-maintenance', label: 'Pool Maintenance', icon: '💦' },
+        { id: 'hardscaping', label: 'Hardscaping', icon: '🧱' },
+        { id: 'irrigation', label: 'Irrigation Systems', icon: '💧' },
+        { id: 'indoor-garden', label: 'Indoor Gardens', icon: '🪴' },
+        { id: 'outdoor-maintenance', label: 'Outdoor Maintenance', icon: '🌳' },
+        { id: 'specialized', label: 'Specialized Services', icon: '🌱' }
     ];
 
     const filteredProjects = filter === 'all'
@@ -109,7 +158,7 @@ const Gallery = () => {
                     <p className="gallery-label">Our Portfolio</p>
                     <h2 className="gallery-heading">Transforming Visions Into Reality</h2>
                     <p className="gallery-subtitle">
-                        Explore our collection of stunning landscape projects across the UAE.
+                        Explore our collection of completed projects across all our service categories.
                         Each project showcases our commitment to excellence and attention to detail.
                     </p>
                 </div>
@@ -121,6 +170,7 @@ const Gallery = () => {
                             className={`filter-btn ${filter === cat.id ? 'active' : ''}`}
                             onClick={() => setFilter(cat.id)}
                         >
+                            <span style={{ marginRight: '0.5rem' }}>{cat.icon}</span>
                             {cat.label}
                         </button>
                     ))}
@@ -152,7 +202,7 @@ const Gallery = () => {
             {/* Lightbox Modal */}
             {selectedImage && (
                 <div className="lightbox-overlay" onClick={closeLightbox}>
-                    <button className="lightbox-close" onClick={closeLightbox}>
+                    <button className="lightbox-close" onClick={closeLightbox} aria-label="Close">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -161,6 +211,7 @@ const Gallery = () => {
                     <button
                         className="lightbox-nav lightbox-prev"
                         onClick={(e) => { e.stopPropagation(); navigateImage('prev'); }}
+                        aria-label="Previous image"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -170,6 +221,7 @@ const Gallery = () => {
                     <button
                         className="lightbox-nav lightbox-next"
                         onClick={(e) => { e.stopPropagation(); navigateImage('next'); }}
+                        aria-label="Next image"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />

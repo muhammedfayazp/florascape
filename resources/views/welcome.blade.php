@@ -48,30 +48,44 @@
         <div class="container">
             <div class="text-center" style="margin-bottom: 4rem;">
                 <h2 class="text-primary">Our Expertise</h2>
-                <p style="color: #666; max-width: 600px; margin: 0 auto;">Comprehensive landscape solutions tailored to your
-                    lifestyle and property.</p>
+                <p style="color: #666; max-width: 600px; margin: 0 auto;">Comprehensive landscape solutions from design to
+                    maintenance</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌿</div>
-                    <h3>Landscape Design</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Custom 3D designs that visualize your perfect outdoor
-                        sanctuary before we break ground.</p>
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">💧</div>
+                    <h3>Automatic Irrigation Systems</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Smart irrigation design and installation for water
+                        efficiency and optimal plant health.</p>
                     <a href="{{ route('services') }}" class="text-primary" style="font-weight: 600;">Learn More →</a>
                 </div>
                 <div class="card">
                     <div style="font-size: 3rem; margin-bottom: 1rem;">🧱</div>
                     <h3>Hardscaping</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Patios, walkways, retaining walls, and outdoor kitchens
-                        built to last generations.</p>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Patios, walkways, retaining walls, decks, and outdoor
+                        living spaces built to last.</p>
                     <a href="{{ route('services') }}" class="text-primary" style="font-weight: 600;">Learn More →</a>
                 </div>
                 <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">✂️</div>
-                    <h3>Maintenance</h3>
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🪴</div>
+                    <h3>Indoor Garden Installation</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Transform interior spaces with living walls and
+                        professional plant installations.</p>
+                    <a href="{{ route('services') }}" class="text-primary" style="font-weight: 600;">Learn More →</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌳</div>
+                    <h3>Outdoor Garden Maintenance</h3>
                     <p style="color: #666; margin-bottom: 1.5rem;">Professional care to keep your landscape vibrant,
                         healthy, and pristine year-round.</p>
+                    <a href="{{ route('services') }}" class="text-primary" style="font-weight: 600;">Learn More →</a>
+                </div>
+                <div class="card">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌱</div>
+                    <h3>Specialized Services</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Artificial grass, composite works, landscape lighting,
+                        and custom features.</p>
                     <a href="{{ route('services') }}" class="text-primary" style="font-weight: 600;">Learn More →</a>
                 </div>
             </div>
