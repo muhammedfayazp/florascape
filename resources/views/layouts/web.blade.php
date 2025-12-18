@@ -121,6 +121,7 @@
     rel="stylesheet">
 
   <!-- Styles -->
+  @viteReactRefresh
   @vite(['resources/css/web.css', 'resources/js/app.jsx'])
 </head>
 
