@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const CostCalculator = () => {
+const CostCalculator = ({ title, subtitle, content }) => {
     const [step, setStep] = useState(1);
+    const [loading, setLoading] = useState(true);
+    const [submitting, setSubmitting] = useState(false);
+    const [options, setOptions] = useState({ property_type: [], service: [] });
     const [formData, setFormData] = useState({
         propertyType: '',
         services: [],
@@ -12,21 +15,24 @@ const CostCalculator = () => {
     });
     const [estimate, setEstimate] = useState(null);
 
-    const services = [
-        { id: 'landscape-design', name: 'Landscape Design', pricePerSqFt: 25 },
-        { id: 'lawn-care', name: 'Lawn Care & Maintenance', pricePerSqFt: 8 },
-        { id: 'hardscaping', name: 'Hardscaping (Patios, Walkways)', pricePerSqFt: 150 },
-        { id: 'irrigation', name: 'Irrigation System', pricePerSqFt: 35 },
-        { id: 'pool-landscaping', name: 'Pool Area Landscaping', pricePerSqFt: 200 },
-        { id: 'garden-lighting', name: 'Garden Lighting', pricePerSqFt: 45 }
-    ];
+    // Helpers to get dynamic text from 'content' prop
+    const getDynamicText = (itemTitle, defaultText) => {
+        const item = content?.find(i => i.title === itemTitle);
+        return item ? item.description : defaultText;
+    };
 
-    const propertyTypes = [
-        { id: 'villa', name: 'Villa', multiplier: 1.2 },
-        { id: 'apartment', name: 'Apartment', multiplier: 0.8 },
-        { id: 'townhouse', name: 'Townhouse', multiplier: 1.0 },
-        { id: 'commercial', name: 'Commercial Property', multiplier: 1.5 }
-    ];
+    useEffect(() => {
+        fetch('/api/calculator-options')
+            .then(res => res.json())
+            .then(data => {
+                setOptions(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error('Error fetching options:', err);
+                setLoading(false);
+            });
+    }, []);
 
     const handleServiceToggle = (serviceId) => {
         setFormData(prev => ({
@@ -39,13 +45,14 @@ const CostCalculator = () => {
 
     const calculateEstimate = () => {
         const sqFt = parseFloat(formData.squareFeet) || 0;
-        const propertyMultiplier = propertyTypes.find(p => p.id === formData.propertyType)?.multiplier || 1;
+        const propertyOption = options.property_type.find(p => p.name === formData.propertyType);
+        const propertyMultiplier = propertyOption ? parseFloat(propertyOption.value) : 1;
 
         let total = 0;
-        formData.services.forEach(serviceId => {
-            const service = services.find(s => s.id === serviceId);
+        formData.services.forEach(serviceName => {
+            const service = options.service.find(s => s.name === serviceName);
             if (service) {
-                total += service.pricePerSqFt * sqFt;
+                total += parseFloat(service.value) * sqFt;
             }
         });
 
@@ -61,27 +68,63 @@ const CostCalculator = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Here you would send the data to your backend
-        console.log('Form submitted:', { ...formData, estimate });
-        alert('Thank you! We\'ll send you a detailed quote within 24 hours.');
-        // Reset form
-        setStep(1);
-        setFormData({
-            propertyType: '',
-            services: [],
-            squareFeet: '',
-            name: '',
-            email: '',
-            phone: ''
-        });
-        setEstimate(null);
+        setSubmitting(true);
+
+        try {
+            const response = await fetch('/api/estimate-requests', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
+                },
+                body: JSON.stringify({
+                    property_type: formData.propertyType,
+                    square_feet: formData.squareFeet,
+                    services: formData.services,
+                    estimate_min: estimate.min,
+                    estimate_max: estimate.max,
+                    estimate_average: estimate.average,
+                    user_name: formData.name,
+                    user_email: formData.email,
+                    user_phone: formData.phone
+                })
+            });
+
+            if (response.ok) {
+                alert('Thank you! We\'ve received your request and will send you a detailed quote within 24 hours.');
+                // Reset form
+                setStep(1);
+                setFormData({
+                    propertyType: '',
+                    services: [],
+                    squareFeet: '',
+                    name: '',
+                    email: '',
+                    phone: ''
+                });
+                setEstimate(null);
+            } else {
+                const errorData = await response.json();
+                alert('Something went wrong: ' + (errorData.message || 'Please try again.'));
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            alert('Failed to connect to the server. Please check your connection.');
+        } finally {
+            setSubmitting(false);
+        }
     };
+
+    if (loading) {
+        return <div className="calculator-widget loading">Loading calculator...</div>;
+    }
 
     return (
         <div className="calculator-widget">
             <div className="calculator-header">
-                <h3>Get Your Free Instant Estimate</h3>
-                <p>Answer a few quick questions to see what your project might cost</p>
+                <h3>{title || 'Get Your Free Instant Estimate'}</h3>
+                <p>{subtitle || 'Answer a few quick questions to see what your project might cost'}</p>
                 <div className="progress-bar">
                     <div className="progress-fill" style={{ width: `${(step / 3) * 100}%` }}></div>
                 </div>
@@ -90,19 +133,17 @@ const CostCalculator = () => {
             <div className="calculator-body">
                 {step === 1 && (
                     <div className="step step-1">
-                        <h4>What type of property do you have?</h4>
+                        <h4>{getDynamicText('Property Question', 'What type of property do you have?')}</h4>
                         <div className="property-grid">
-                            {propertyTypes.map(type => (
+                            {options.property_type.map(type => (
                                 <button
                                     key={type.id}
-                                    className={`property-card ${formData.propertyType === type.id ? 'active' : ''}`}
-                                    onClick={() => setFormData({ ...formData, propertyType: type.id })}
+                                    type="button"
+                                    className={`property-card ${formData.propertyType === type.name ? 'active' : ''}`}
+                                    onClick={() => setFormData({ ...formData, propertyType: type.name })}
                                 >
                                     <div className="property-icon">
-                                        {type.id === 'villa' && '🏡'}
-                                        {type.id === 'apartment' && '🏢'}
-                                        {type.id === 'townhouse' && '🏘️'}
-                                        {type.id === 'commercial' && '🏬'}
+                                        {type.icon || '🏡'}
                                     </div>
                                     <span>{type.name}</span>
                                 </button>
@@ -132,19 +173,19 @@ const CostCalculator = () => {
 
                 {step === 2 && (
                     <div className="step step-2">
-                        <h4>What services are you interested in?</h4>
+                        <h4>{getDynamicText('Service Question', 'What services are you interested in?')}</h4>
                         <p className="step-subtitle">Select all that apply</p>
                         <div className="services-list">
-                            {services.map(service => (
+                            {options.service.map(service => (
                                 <label key={service.id} className="service-checkbox">
                                     <input
                                         type="checkbox"
-                                        checked={formData.services.includes(service.id)}
-                                        onChange={() => handleServiceToggle(service.id)}
+                                        checked={formData.services.includes(service.name)}
+                                        onChange={() => handleServiceToggle(service.name)}
                                     />
                                     <span className="checkmark"></span>
                                     <span className="service-name">{service.name}</span>
-                                    <span className="service-price">~AED {service.pricePerSqFt}/sq ft</span>
+                                    <span className="service-price">~AED {service.value}/sq ft</span>
                                 </label>
                             ))}
                         </div>
@@ -168,7 +209,7 @@ const CostCalculator = () => {
                     <div className="step step-3">
                         <div className="estimate-result">
                             <div className="estimate-icon">💰</div>
-                            <h4>Your Estimated Project Cost</h4>
+                            <h4>{getDynamicText('Estimate Title', 'Your Estimated Project Cost')}</h4>
                             <div className="estimate-range">
                                 <div className="estimate-box">
                                     <span className="estimate-label">Minimum</span>
@@ -216,8 +257,8 @@ const CostCalculator = () => {
                                     required
                                     className="calc-input"
                                 />
-                                <button type="submit" className="btn-submit">
-                                    Get My Detailed Quote 📧
+                                <button type="submit" className="btn-submit" disabled={submitting}>
+                                    {submitting ? 'Submitting...' : 'Get My Detailed Quote 📧'}
                                 </button>
                             </form>
                         </div>

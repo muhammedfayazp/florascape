@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/calculator-options', [\App\Http\Controllers\EstimateController::class, 'getOptions']);
+Route::post('/estimate-requests', [\App\Http\Controllers\EstimateController::class, 'storeRequest']);

@@ -36,60 +36,40 @@
     @endif
 
     {{-- Cost Calculator Section --}}
-    <section class="calculator-section">
-        <div class="container">
-            <div id="cost-calculator-root"></div>
-        </div>
-    </section>
+    @if(isset($sections['cost_calculator']))
+        <section class="calculator-section">
+            <div class="container">
+                <div id="cost-calculator-root" data-title="{{ $sections['cost_calculator']->title }}"
+                    data-subtitle="{{ $sections['cost_calculator']->subtitle }}"
+                    data-content='@json($sections['cost_calculator']->content)'></div>
+            </div>
+        </section>
+    @endif
 
     {{-- Services Section --}}
-    <section class="section bg-off-white">
-        <div class="container">
-            <div class="text-center" style="margin-bottom: 4rem;">
-                <h2 class="text-primary">Our Expertise</h2>
-                <p style="color: #666; max-width: 600px; margin: 0 auto;">Comprehensive landscape solutions from design to
-                    maintenance</p>
-            </div>
+    @if(isset($sections['our_expertise']))
+        <section class="section bg-off-white">
+            <div class="container">
+                <div class="text-center" style="margin-bottom: 4rem;">
+                    <h2 class="text-primary">{{ $sections['our_expertise']->title }}</h2>
+                    <p style="color: #666; max-width: 600px; margin: 0 auto;">{{ $sections['our_expertise']->subtitle }}</p>
+                </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">💧</div>
-                    <h3>Automatic Irrigation Systems</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Smart irrigation design and installation for water
-                        efficiency and optimal plant health.</p>
-                    <a href="{{ route('services') }}" class="text-primary" style="font-weight: 600;">Learn More →</a>
-                </div>
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🧱</div>
-                    <h3>Hardscaping</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Patios, walkways, retaining walls, decks, and outdoor
-                        living spaces built to last.</p>
-                    <a href="{{ route('services') }}" class="text-primary" style="font-weight: 600;">Learn More →</a>
-                </div>
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🪴</div>
-                    <h3>Indoor Garden Installation</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Transform interior spaces with living walls and
-                        professional plant installations.</p>
-                    <a href="{{ route('services') }}" class="text-primary" style="font-weight: 600;">Learn More →</a>
-                </div>
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌳</div>
-                    <h3>Outdoor Garden Maintenance</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Professional care to keep your landscape vibrant,
-                        healthy, and pristine year-round.</p>
-                    <a href="{{ route('services') }}" class="text-primary" style="font-weight: 600;">Learn More →</a>
-                </div>
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌱</div>
-                    <h3>Specialized Services</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Artificial grass, composite works, landscape lighting,
-                        and custom features.</p>
-                    <a href="{{ route('services') }}" class="text-primary" style="font-weight: 600;">Learn More →</a>
+                <div class="grid md:grid-cols-3 gap-8">
+                    @if($sections['our_expertise']->content)
+                        @foreach($sections['our_expertise']->content as $item)
+                            <div class="card">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">{{ $item['icon'] ?? ($item['image'] ?? '✨') }}</div>
+                                <h3>{{ $item['title'] ?? '' }}</h3>
+                                <p style="color: #666; margin-bottom: 1.5rem;">{{ $item['description'] ?? '' }}</p>
+                                <a href="{{ route('services') }}" class="text-primary" style="font-weight: 600;">Learn More →</a>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     {{-- Gallery Section --}}
     <section id="gallery" class="gallery-section">

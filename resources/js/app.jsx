@@ -22,10 +22,19 @@ const mountReact = () => {
     // Mount Cost Calculator
     const calcElement = document.getElementById('cost-calculator-root');
     if (calcElement) {
+        const title = calcElement.getAttribute('data-title');
+        const subtitle = calcElement.getAttribute('data-subtitle');
+        const contentAttr = calcElement.getAttribute('data-content');
+        const content = contentAttr ? JSON.parse(contentAttr) : [];
+
         const calcRoot = createRoot(calcElement);
         calcRoot.render(
             <React.StrictMode>
-                <CostCalculator />
+                <CostCalculator
+                    title={title}
+                    subtitle={subtitle}
+                    content={content}
+                />
             </React.StrictMode>
         );
     }

@@ -28,10 +28,10 @@ class DemoContentSeeder extends Seeder
                 'type' => 'main',
                 'sort_order' => 1,
                 'features' => [
-                    'Regular pool cleaning and servicing',
-                    'Chemical balance management',
-                    'Equipment inspection and repair',
-                    'Pond and fountain maintenance'
+                    'Regular pool cleaning',
+                    'Chemical balancing',
+                    'Equipment maintenance',
+                    'Water feature care'
                 ]
             ],
             [
@@ -41,10 +41,10 @@ class DemoContentSeeder extends Seeder
                 'type' => 'main',
                 'sort_order' => 2,
                 'features' => [
-                    'Custom irrigation design and installation',
-                    'Smart controller integration',
-                    'Drip and sprinkler systems',
-                    'Water conservation solutions'
+                    'Smart irrigation design',
+                    'Water efficiency',
+                    'Plant health monitoring',
+                    'System maintenance'
                 ]
             ],
             [
@@ -54,10 +54,10 @@ class DemoContentSeeder extends Seeder
                 'type' => 'main',
                 'sort_order' => 3,
                 'features' => [
-                    'Indoor plant selection and installation',
-                    'Living wall design and construction',
-                    'Regular maintenance and care',
-                    'Plant health monitoring'
+                    'Living wall installation',
+                    'Potted plant arrangements',
+                    'Indoor garden care',
+                    'Regular maintenance'
                 ]
             ],
             [
@@ -67,10 +67,10 @@ class DemoContentSeeder extends Seeder
                 'type' => 'main',
                 'sort_order' => 4,
                 'features' => [
-                    'Lawn mowing and edging',
-                    'Pruning and trimming',
-                    'Fertilization and pest control',
-                    'Seasonal plantings and cleanups'
+                    'Landscape health',
+                    'Horticultural care',
+                    'Vibrant gardens',
+                    'Expert maintenance'
                 ]
             ],
             [
@@ -80,37 +80,11 @@ class DemoContentSeeder extends Seeder
                 'type' => 'main',
                 'sort_order' => 5,
                 'features' => [
-                    'Tile work and paving',
-                    'Rockery gardens and paths',
-                    'Wood composite & timber decks',
-                    'Walls, fences, and trellis',
-                    'Stepping stones and gravel work',
-                    'Outdoor structures and playgrounds'
+                    'Durable elements',
+                    'Outdoor living paths',
+                    'Wall construction',
+                    'Patio design'
                 ]
-            ],
-            [
-                'title' => 'Artificial Grass and Plants Installation',
-                'description' => 'Low-maintenance, year-round green solutions perfect for UAE\'s climate',
-                'icon' => '🌱',
-                'type' => 'specialized',
-                'sort_order' => 6,
-                'features' => []
-            ],
-            [
-                'title' => 'Composite Works',
-                'description' => 'Children\'s play equipment, artificial rock work, landscape lighting, pergolas & gazebos, shade structures, timber bridges and decking',
-                'icon' => '🎨',
-                'type' => 'specialized',
-                'sort_order' => 7,
-                'features' => []
-            ],
-            [
-                'title' => 'Custom Landscape Features',
-                'description' => 'Bespoke outdoor elements tailored to your vision and property requirements',
-                'icon' => '🏗️',
-                'type' => 'specialized',
-                'sort_order' => 8,
-                'features' => []
             ],
         ];
 
@@ -293,6 +267,21 @@ class DemoContentSeeder extends Seeder
         );
 
         \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'cost_calculator'],
+            [
+                'title' => 'Get Your Free Instant Estimate',
+                'subtitle' => 'Answer a few quick questions to see what your project might cost',
+                'content' => [
+                    ['title' => 'Property Question', 'description' => 'What type of property do you have?'],
+                    ['title' => 'Service Question', 'description' => 'What services are you interested in?'],
+                    ['title' => 'Estimate Title', 'description' => 'Your Estimated Project Cost'],
+                ],
+                'is_active' => true,
+                'sort_order' => 2,
+            ]
+        );
+
+        \App\Models\PageSection::updateOrCreate(
             ['section_key' => 'about_hero'],
             [
                 'title' => 'About Florascape',
@@ -403,5 +392,87 @@ class DemoContentSeeder extends Seeder
                 'sort_order' => 11,
             ]
         );
+
+        // Calculator Options
+        $propertyTypes = [
+            ['name' => 'Villa', 'value' => 1.2, 'icon' => '🏡'],
+            ['name' => 'Apartment', 'value' => 0.8, 'icon' => '🏢'],
+            ['name' => 'Townhouse', 'value' => 1.0, 'icon' => '🏘️'],
+            ['name' => 'Commercial Property', 'value' => 1.5, 'icon' => '🏬'],
+        ];
+
+        foreach ($propertyTypes as $index => $type) {
+            \App\Models\CalculatorOption::updateOrCreate(
+                ['type' => 'property_type', 'name' => $type['name']],
+                ['value' => $type['value'], 'icon' => $type['icon'], 'sort_order' => $index, 'is_active' => true]
+            );
+        }
+
+        $calcServices = [
+            ['name' => 'Landscape Design', 'value' => 25, 'icon' => '🎨'],
+            ['name' => 'Lawn Care & Maintenance', 'value' => 8, 'icon' => '🌱'],
+            ['name' => 'Hardscaping (Patios, Walkways)', 'value' => 150, 'icon' => '🧱'],
+            ['name' => 'Irrigation System', 'value' => 35, 'icon' => '💧'],
+            ['name' => 'Pool Area Landscaping', 'value' => 200, 'icon' => '🏊'],
+            ['name' => 'Garden Lighting', 'value' => 45, 'icon' => '💡'],
+        ];
+
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'our_expertise'],
+            [
+                'title' => 'Our Expertise',
+                'subtitle' => 'Comprehensive landscape solutions from design to maintenance',
+                'content' => [
+                    [
+                        'title' => 'Swimming Pool & Water Feature Care and Maintenance',
+                        'description' => 'Professional cleaning, chemical balancing, and maintenance to keep your water features pristine year-round.',
+                        'icon' => '💦',
+                    ],
+                    [
+                        'title' => 'Automatic Irrigation System',
+                        'description' => 'Smart irrigation solutions designed for water efficiency and optimal plant health in UAE\'s climate.',
+                        'icon' => '💧',
+                    ],
+                    [
+                        'title' => 'Indoor Garden Installation, Care & Maintenance',
+                        'description' => 'Transform interior spaces with lush greenery, from living walls to potted plant arrangements.',
+                        'icon' => '🪴',
+                    ],
+                    [
+                        'title' => 'Outdoor Garden Care & Maintenance',
+                        'description' => 'Comprehensive outdoor maintenance services to keep your landscape healthy, vibrant, and beautiful.',
+                        'icon' => '🌳',
+                    ],
+                    [
+                        'title' => 'Hardscaping',
+                        'description' => 'Durable and beautiful hardscape elements that define and enhance your outdoor living spaces.',
+                        'icon' => '🧱',
+                    ],
+                ],
+                'is_active' => true,
+                'sort_order' => 3,
+            ]
+        );
+
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'footer_cta'],
+            [
+                'title' => 'Ready to Transform Your Landscape?',
+                'subtitle' => 'Contact us today for a free consultation and estimate.',
+                'content' => [
+                    ['description' => 'Start Your Project'],
+                    ['description' => '/contact']
+                ],
+                'is_active' => true,
+                'sort_order' => 12,
+            ]
+        );
+
+        foreach ($calcServices as $index => $service) {
+            \App\Models\CalculatorOption::updateOrCreate(
+                ['type' => 'service', 'name' => $service['name']],
+                ['value' => $service['value'], 'icon' => $service['icon'], 'sort_order' => $index, 'is_active' => true]
+            );
+        }
     }
 }

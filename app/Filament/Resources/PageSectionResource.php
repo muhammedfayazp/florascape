@@ -63,6 +63,9 @@ class PageSectionResource extends Resource
                                     ->label('Item Text / Role / Description')
                                     ->required()
                                     ->rows(3),
+                                Forms\Components\TextInput::make('icon')
+                                    ->label('Icon (Emoji or CSS Class)')
+                                    ->nullable(),
                                 Forms\Components\FileUpload::make('image')
                                     ->label('Item Image (Optional)')
                                     ->image()

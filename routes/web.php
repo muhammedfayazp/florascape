@@ -23,8 +23,9 @@ Route::get('/', function () {
     $heroSlides = \App\Models\Slider::where('type', 'homepage')->first();
 
     $sections = \App\Models\PageSection::where('is_active', true)->get()->keyBy('section_key');
+    $services = \App\Models\Service::where('type', 'main')->orderBy('sort_order')->get();
 
-    return view('welcome', compact('categories', 'heroSlides', 'sections'));
+    return view('welcome', compact('categories', 'heroSlides', 'sections', 'services'));
 })->name('home');
 
 Route::get('/portfolio', function () {
