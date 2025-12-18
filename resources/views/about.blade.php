@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'About Us - Florascape')
+@section('title', 'About Us - ' . config('app.name'))
 
 @section('content')
     {{-- About Hero --}}
@@ -9,7 +9,8 @@
             <div class="container animate-fade-in">
                 <h1>{{ $sections['about_hero']->title }}</h1>
                 <p style="font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">
-                    {{ $sections['about_hero']->subtitle }}</p>
+                    {{ $sections['about_hero']->subtitle }}
+                </p>
             </div>
         </div>
     @endif

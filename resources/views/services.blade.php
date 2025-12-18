@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'Our Services - Professional Landscaping Services in UAE | Florascape')
+@section('title', 'Our Services - Professional Landscaping Services in UAE | ' . config('app.name'))
 
 @section('content')
     {{-- Hero Section --}}

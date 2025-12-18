@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'Contact Us - Florascape')
+@section('title', 'Contact Us - ' . config('app.name'))
 
 @section('content')
     {{-- Contact Hero --}}

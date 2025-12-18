@@ -137,7 +137,7 @@
   <header class="site-header">
     <div class="container flex justify-between items-center">
       <a href="{{ route('home') }}" class="logo" style="display: flex; align-items: center;">
-        <img loading="lazy" src="{{ asset('images/florascape-logo.png') }}" alt="Florascape Logo"
+        <img loading="lazy" src="{{ asset('images/florascape-logo.png') }}" alt="{{ config('app.name') }} Logo"
           style="height: 70px; width: auto;">
       </a>
 
@@ -165,7 +165,7 @@
   <footer class="site-footer">
     <div class="container grid md:grid-cols-3 gap-8">
       <div>
-        <h4 class="text-accent">Florascape</h4>
+        <h4 class="text-accent">{{ config('app.name') }}</h4>
         <p style="color: #999; margin-top: 1rem;">Transforming outdoor spaces into living works of art.
           Dedicated to quality, sustainability, and beauty.</p>
       </div>
@@ -191,7 +191,7 @@
       </div>
     </div>
     <div class="container text-center" style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #333;">
-      <p style="color: #666;">&copy; {{ date('Y') }} Florascape. All rights reserved.</p>
+      <p style="color: #666;">&copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
     </div>
   </footer>
 
