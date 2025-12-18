@@ -31,10 +31,13 @@ const mountReact = () => {
     // Mount Gallery
     const galleryElement = document.getElementById('gallery-root');
     if (galleryElement) {
+        const dataAttr = galleryElement.getAttribute('data-initial-data');
+        const initialData = dataAttr ? JSON.parse(dataAttr) : null;
+
         const galleryRoot = createRoot(galleryElement);
         galleryRoot.render(
             <React.StrictMode>
-                <Gallery />
+                <Gallery initialData={initialData} />
             </React.StrictMode>
         );
     }

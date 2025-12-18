@@ -27,77 +27,24 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                {{-- Pool & Water Feature Maintenance --}}
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">💦</div>
-                    <h3>Swimming Pool & Water Feature Care and Maintenance</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Professional cleaning, chemical balancing, and
-                        maintenance to keep your water features pristine year-round.</p>
-                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">✓ Regular pool cleaning and servicing</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Chemical balance management</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Equipment inspection and repair</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Pond and fountain maintenance</li>
-                    </ul>
-                </div>
-
-                {{-- Automatic Irrigation --}}
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">💧</div>
-                    <h3>Automatic Irrigation System</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Smart irrigation solutions designed for water efficiency
-                        and optimal plant health in UAE's climate.</p>
-                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">✓ Custom irrigation design and installation</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Smart controller integration</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Drip and sprinkler systems</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Water conservation solutions</li>
-                    </ul>
-                </div>
-
-                {{-- Indoor Garden --}}
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🪴</div>
-                    <h3>Indoor Garden Installation, Care & Maintenance</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Transform interior spaces with lush greenery, from living
-                        walls to potted plant arrangements.</p>
-                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">✓ Indoor plant selection and installation</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Living wall design and construction</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Regular maintenance and care</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Plant health monitoring</li>
-                    </ul>
-                </div>
-
-                {{-- Outdoor Garden Maintenance --}}
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌳</div>
-                    <h3>Outdoor Garden Care & Maintenance</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Comprehensive outdoor maintenance services to keep your
-                        landscape healthy, vibrant, and beautiful.</p>
-                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">✓ Lawn mowing and edging</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Pruning and trimming</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Fertilization and pest control</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Seasonal plantings and cleanups</li>
-                    </ul>
-                </div>
-
-                {{-- Hardscaping --}}
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🧱</div>
-                    <h3>Hardscaping</h3>
-                    <p style="color: #666; margin-bottom: 1.5rem;">Durable and beautiful hardscape elements that define and
-                        enhance your outdoor living spaces.</p>
-                    <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">✓ Tile work and paving</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Rockery gardens and paths</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Wood composite & timber decks</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Walls, fences, and trellis</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Stepping stones and gravel work</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Outdoor structures and playgrounds</li>
-                    </ul>
-                </div>
+                @foreach($services->where('type', 'main') as $service)
+                    <div class="card">
+                        @if($service->icon)
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">{{ $service->icon }}</div>
+                        @endif
+                        <h3>{{ $service->title }}</h3>
+                        <p style="color: #666; margin-bottom: 1.5rem;">{{ $service->description }}</p>
+                        @if($service->features && is_array($service->features))
+                            <ul style="list-style: none; color: #444; margin-bottom: 2rem;">
+                                @foreach($service->features as $featureItem)
+                                    {{-- Handle repeater structure depending on how it saves --}}
+                                    @php $featureText = is_array($featureItem) ? ($featureItem['feature'] ?? reset($featureItem)) : $featureItem; @endphp
+                                    <li style="margin-bottom: 0.5rem;">✓ {{ $featureText }}</li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -113,24 +60,15 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌱</div>
-                    <h4>Artificial Grass and Plants Installation</h4>
-                    <p style="color: #666;">Low-maintenance, year-round green solutions perfect for UAE's climate</p>
-                </div>
-
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎨</div>
-                    <h4>Composite Works</h4>
-                    <p style="color: #666;">Children's play equipment, artificial rock work, landscape lighting, pergolas &
-                        gazebos, shade structures, timber bridges and decking</p>
-                </div>
-
-                <div class="card">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🏗️</div>
-                    <h4>Custom Landscape Features</h4>
-                    <p style="color: #666;">Bespoke outdoor elements tailored to your vision and property requirements</p>
-                </div>
+                @foreach($services->where('type', 'specialized') as $service)
+                    <div class="card">
+                        @if($service->icon)
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">{{ $service->icon }}</div>
+                        @endif
+                        <h4>{{ $service->title }}</h4>
+                        <p style="color: #666;">{{ $service->description }}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

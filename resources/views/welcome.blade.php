@@ -94,7 +94,7 @@
 
     {{-- Gallery Section --}}
     <section id="gallery" class="gallery-section">
-        <div id="gallery-root"></div>
+        <div id="gallery-root" data-initial-data='@json($categories)'></div>
     </section>
 
     {{-- Features / Why Choose Us --}}

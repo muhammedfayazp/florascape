@@ -14,11 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $categories = \App\Models\ProjectCategory::with([
+        'projects' => function ($query) {
+            $query->orderBy('sort_order');
+        }
+    ])->orderBy('sort_order')->get();
+
+    return view('welcome', compact('categories'));
 })->name('home');
 
 Route::get('/services', function () {
-    return view('services');
+    $services = \App\Models\Service::orderBy('sort_order')->get();
+    return view('services', compact('services'));
 })->name('services');
 
 Route::get('/about', function () {
