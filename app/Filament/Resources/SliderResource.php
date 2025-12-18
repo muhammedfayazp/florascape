@@ -18,8 +18,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class SliderResource extends Resource
 {
     protected static ?string $model = Slider::class;
-    // protected static ?string $navigationIcon = 'rectangle-stack';
-    protected static ?string $navigationGroup = 'Content';
+    protected static ?string $navigationIcon = 'heroicon-o-photo';
+    protected static ?string $navigationGroup = 'Site Content';
 
     public static function form(Form $form): Form
     {
@@ -52,6 +52,11 @@ class SliderResource extends Resource
                             ->url() // validate as URL
                             ->placeholder('https://example.com')
                             ->nullable(), // link optional
+
+                        Forms\Components\TextInput::make('cta_text')
+                            ->label('Button Text')
+                            ->placeholder('Contact Us')
+                            ->nullable(),
                     ])
                     ->collapsible()
                     ->minItems(1)

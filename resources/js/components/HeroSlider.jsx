@@ -8,9 +8,35 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
-const HeroSlider = () => {
+const HeroSlider = ({ slides = [] }) => {
     const navigationPrevRef = React.useRef(null);
     const navigationNextRef = React.useRef(null);
+
+    const defaultSlides = [
+        {
+            image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+            title: "Transform Your Outdoors into a Luxury Oasis",
+            description: "Premium Landscaping & Pool Solutions in the UAE | Residential & Commercial Projects",
+            link: "/contact",
+            cta: "Get A Quote"
+        },
+        {
+            image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+            title: "Expert Craftsmanship for Every Scale",
+            description: "From intricate garden designs to expansive commercial developments.",
+            link: "/services",
+            cta: "View Services"
+        },
+        {
+            image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+            title: "Sustainable Beauty, Built to Last",
+            description: "Eco-friendly irrigation and native plant selection for the UAE climate.",
+            link: "/contact",
+            cta: "Contact Us"
+        }
+    ];
+
+    const finalSlides = slides && slides.length > 0 ? slides : defaultSlides;
 
     return (
         <Swiper
@@ -35,44 +61,30 @@ const HeroSlider = () => {
                 el: '.swiper-pagination',
                 type: 'custom',
                 renderCustom: function (swiper, current, total) {
-                    // Fixed: Removed 'key' attribute from HTML string
                     return `<span class="swiper-pagination-current">${current}</span> / <span class="swiper-pagination-total">${total}</span>`;
                 }
             }}
             className="hero-swiper"
         >
-            <SwiperSlide>
-                <div className="slide-bg" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')" }}></div>
-                <div className="slide-content">
-                    <h1 className="slide-title">Transform Your Outdoors into a Luxury Oasis</h1>
-                    <p className="slide-text">Premium Landscaping & Pool Solutions in the UAE | Residential & Commercial Projects</p>
-                    <div className="slide-btn">
-                        <a href="/contact" className="btn-green">Get A Quote</a>
-                    </div>
-                </div>
-            </SwiperSlide>
+            {finalSlides.map((slide, index) => {
+                const imageUrl = slide.image && !slide.image.startsWith('http') ? `/storage/${slide.image}` : slide.image;
+                const ctaText = slide.cta_text || (slide.link && slide.link.includes('contact') ? 'Contact Us' : 'View Services') || 'Learn More';
 
-            <SwiperSlide>
-                <div className="slide-bg" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')" }}></div>
-                <div className="slide-content">
-                    <h1 className="slide-title">Expert Craftsmanship for Every Scale</h1>
-                    <p className="slide-text">From intricate garden designs to expansive commercial developments.</p>
-                    <div className="slide-btn">
-                        <a href="/services" className="btn-green">View Services</a>
-                    </div>
-                </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-                <div className="slide-bg" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')" }}></div>
-                <div className="slide-content">
-                    <h1 className="slide-title">Sustainable Beauty, Built to Last</h1>
-                    <p className="slide-text">Eco-friendly irrigation and native plant selection for the UAE climate.</p>
-                    <div className="slide-btn">
-                        <a href="/contact" className="btn-green">Contact Us</a>
-                    </div>
-                </div>
-            </SwiperSlide>
+                return (
+                    <SwiperSlide key={index}>
+                        <div className="slide-bg" style={{ backgroundImage: `url('${imageUrl}')` }}></div>
+                        <div className="slide-content">
+                            {slide.title && <h1 className="slide-title">{slide.title}</h1>}
+                            {slide.description && <p className="slide-text">{slide.description}</p>}
+                            {slide.link && (
+                                <div className="slide-btn">
+                                    <a href={slide.link} className="btn-green">{ctaText}</a>
+                                </div>
+                            )}
+                        </div>
+                    </SwiperSlide>
+                );
+            })}
 
             {/* Controls Bar */}
             <div className="controls-bar">

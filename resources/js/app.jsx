@@ -7,12 +7,14 @@ import Gallery from './components/Gallery';
 
 const mountReact = () => {
     const rootElement = document.getElementById('hero-slider-root');
-
     if (rootElement) {
+        const slidesAttr = rootElement.getAttribute('data-initial-slides');
+        const slides = slidesAttr ? JSON.parse(slidesAttr) : [];
+
         const root = createRoot(rootElement);
         root.render(
             <React.StrictMode>
-                <HeroSlider />
+                <HeroSlider slides={slides} />
             </React.StrictMode>
         );
     }

@@ -2,7 +2,8 @@
 
 @section('content')
     {{-- Hero Section (React) --}}
-    <div id="hero-slider-root"></div>
+    {{-- Hero Section (React) --}}
+    <div id="hero-slider-root" data-initial-slides='@json($heroSlides ? $heroSlides->slides : [])'></div>
 
     {{-- About Us Section --}}
     <section class="about-section">

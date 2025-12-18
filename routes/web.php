@@ -20,7 +20,9 @@ Route::get('/', function () {
         }
     ])->orderBy('sort_order')->get();
 
-    return view('welcome', compact('categories'));
+    $heroSlides = \App\Models\Slider::where('type', 'homepage')->first();
+
+    return view('welcome', compact('categories', 'heroSlides'));
 })->name('home');
 
 Route::get('/services', function () {
