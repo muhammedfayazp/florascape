@@ -41,7 +41,38 @@ class SiteSettings extends Page implements HasForms
                             ->onColor('success')
                             ->offColor('danger')
                             ->inline(false),
+                        \Filament\Forms\Components\TextInput::make('site_name')
+                            ->label('Site Name')
+                            ->placeholder('Florascape')
+                            ->required(),
                     ]),
+
+                Section::make('SEO Configuration')
+                    ->schema([
+                        \Filament\Forms\Components\TextInput::make('meta_title')
+                            ->label('Global Meta Title')
+                            ->placeholder('Florascape - Premium Landscaping Services')
+                            ->helperText('This title will appear in search results and browser tabs.'),
+                        \Filament\Forms\Components\Textarea::make('meta_description')
+                            ->label('Global Meta Description')
+                            ->rows(3)
+                            ->placeholder('Premium landscaping and garden maintenance services in Abu Dhabi...')
+                            ->helperText('A brief summary of your site for search engines.'),
+                        \Filament\Forms\Components\TextInput::make('meta_keywords')
+                            ->label('Global Keywords')
+                            ->placeholder('landscaping, gardening, abu dhabi, florascape')
+                            ->helperText('Comma-separated list of keywords.'),
+                        \Filament\Forms\Components\FileUpload::make('og_image')
+                            ->label('Social Share Image (OG Image)')
+                            ->image()
+                            ->directory('settings')
+                            ->helperText('Image shown when your site is shared on social media (1200x630 recommended).'),
+                        \Filament\Forms\Components\FileUpload::make('favicon')
+                            ->label('Favicon')
+                            ->image()
+                            ->directory('settings')
+                            ->helperText('The small icon shown in the browser tab.'),
+                    ])->columns(1),
             ])
             ->statePath('data');
     }

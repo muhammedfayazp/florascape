@@ -6,33 +6,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {{-- SEO Meta Tags --}}
-  <title>@yield('title', 'Florascape - Premium Landscaping Services in UAE | Expert Garden Design & Maintenance')
-  </title>
+  <title>@yield('title', ($siteSettings->meta_title ?? 'Florascape - Premium Landscaping Services in UAE'))</title>
   <meta name="description"
-    content="@yield('description', 'Transform your outdoor space with Florascape - UAEs leading landscaping company. Professional landscape design, hardscaping, pool installation, and maintenance services. Award-winning craftsmanship for residential and commercial projects.')">
+    content="@yield('description', ($siteSettings->meta_description ?? 'Transform your outdoor space with Florascape - UAEs leading landscaping company.'))">
   <meta name="keywords"
-    content="landscaping UAE, garden design Dubai, landscape services, hardscaping, pool installation, outdoor design, garden maintenance, commercial landscaping, residential landscaping, lawn care UAE">
-  <meta name="author" content="Florascape Landscape LLC">
+    content="@yield('keywords', ($siteSettings->meta_keywords ?? 'landscaping UAE, garden design Dubai, landscape services'))">
+  <meta name="author" content="{{ $siteSettings->site_name ?? 'Florascape Landscape LLC' }}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="{{ url()->current() }}">
+
+  @if($siteSettings && $siteSettings->favicon)
+    <link rel="icon" type="image/x-icon" href="{{ asset('storage/' . $siteSettings->favicon) }}">
+  @endif
 
   {{-- Open Graph / Facebook --}}
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ url()->current() }}">
-  <meta property="og:title" content="@yield('og_title', 'Florascape - Premium Landscaping Services in UAE')">
+  <meta property="og:title"
+    content="@yield('og_title', ($siteSettings->meta_title ?? 'Florascape - Premium Landscaping Services in UAE'))">
   <meta property="og:description"
-    content="@yield('og_description', 'Expert landscaping services transforming outdoor spaces across the UAE. From custom designs to professional maintenance.')">
-  <meta property="og:image" content="{{ asset('images/og-image.jpg') }}">
-  <meta property="og:site_name" content="Florascape">
+    content="@yield('og_description', ($siteSettings->meta_description ?? 'Expert landscaping services transforming outdoor spaces across the UAE.'))">
+  @php
+    $ogImage = $siteSettings && $siteSettings->og_image ? asset('storage/' . $siteSettings->og_image) : asset('images/og-image.jpg');
+  @endphp
+  <meta property="og:image" content="{{ $ogImage }}">
+  <meta property="og:site_name" content="{{ $siteSettings->site_name ?? 'Florascape' }}">
   <meta property="og:locale" content="en_AE">
 
   {{-- Twitter Card --}}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="{{ url()->current() }}">
-  <meta name="twitter:title" content="@yield('twitter_title', 'Florascape - Premium Landscaping Services in UAE')">
+  <meta name="twitter:title"
+    content="@yield('twitter_title', ($siteSettings->meta_title ?? 'Florascape - Premium Landscaping Services in UAE'))">
   <meta name="twitter:description"
-    content="@yield('twitter_description', 'Expert landscaping services transforming outdoor spaces across the UAE.')">
-  <meta name="twitter:image" content="{{ asset('images/twitter-card.jpg') }}">
+    content="@yield('twitter_description', ($siteSettings->meta_description ?? 'Expert landscaping services transforming outdoor spaces across the UAE.'))">
+  <meta name="twitter:image" content="{{ $ogImage }}">
 
   {{-- JSON-LD Structured Data --}}
   <script type="application/ld+json">

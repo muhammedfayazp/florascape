@@ -9,7 +9,8 @@
             <div class="container animate-fade-in">
                 <h1>{{ $sections['contact_hero']->title }}</h1>
                 <p style="font-size: 1.2rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">
-                    {{ $sections['contact_hero']->subtitle }}</p>
+                    {{ $sections['contact_hero']->subtitle }}
+                </p>
             </div>
         </div>
     @endif
@@ -121,11 +122,19 @@
         </div>
     </section>
 
-    {{-- Map Placeholder --}}
-    <section>
-        <div
-            style="width: 100%; height: 400px; background-color: #e0e0e0; display: flex; align-items: center; justify-content: center; color: #777;">
-            [Map Embedding Would Go Here]
-        </div>
-    </section>
+    {{-- Dynamic Map Section --}}
+    @if(isset($sections['contact_map']))
+        <section>
+            @if(!empty($sections['contact_map']->subtitle))
+                <iframe src="{{ $sections['contact_map']->subtitle }}" width="100%" height="450" style="border:0;"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            @else
+                <div
+                    style="width: 100%; height: 400px; background-color: #e0e0e0; display: flex; align-items: center; justify-content: center; color: #777;">
+                    [Map URL not provided in admin panel]
+                </div>
+            @endif
+        </section>
+    @endif
 @endsection

@@ -17,7 +17,16 @@ class DemoContentSeeder extends Seeder
     public function run(): void
     {
         // 1. Site Settings
-        SiteSetting::firstOrCreate([], ['is_published' => true]);
+        SiteSetting::updateOrCreate(
+            ['id' => 1],
+            [
+                'is_published' => true,
+                'site_name' => 'Florascape',
+                'meta_title' => 'Florascape - Premium Landscaping & Garden Services UAE',
+                'meta_description' => 'Transform your outdoor spaces with Florascape. Abu Dhabi\'s leading landscaping company for design, maintenance, and expert garden care.',
+                'meta_keywords' => 'landscaping, garden design, Abu Dhabi, UAE, maintenance, pool maintenance',
+            ]
+        );
 
         // 2. Services
         $services = [
@@ -263,6 +272,16 @@ class DemoContentSeeder extends Seeder
                 ],
                 'is_active' => true,
                 'sort_order' => 2,
+            ]
+        );
+
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'contact_map'],
+            [
+                'title' => 'Our Location',
+                'subtitle' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14544.746011382582!2d54.34!3d24.47!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e6617cf9cb8e9%3A0x629555627685c7c!2sAbu%20Dhabi!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae',
+                'is_active' => true,
+                'sort_order' => 10,
             ]
         );
 

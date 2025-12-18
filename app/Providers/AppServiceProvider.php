@@ -22,5 +22,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
+
+        // Share site settings with all views
+        if (!app()->runningInConsole() && Schema::hasTable('site_settings')) {
+            $settings = \App\Models\SiteSetting::first();
+            \Illuminate\Support\Facades\View::share('siteSettings', $settings);
+        }
     }
 }

@@ -9,5 +9,14 @@ class SiteSetting extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['is_published'];
+    protected $fillable = [
+        'is_published',
+        'site_name',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'og_image',
+        'favicon',
+        'social_links'
+    ];
 }
