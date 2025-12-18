@@ -5,6 +5,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  {{-- Google Tag Manager --}}
+  @if($siteSettings && $siteSettings->gtm_id)
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', '{{ $siteSettings->gtm_id }}');</script>
+  @endif
+
+  {{-- Google Analytics (gtag.js) --}}
+  @if($siteSettings && $siteSettings->google_analytics_id)
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $siteSettings->google_analytics_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', '{{ $siteSettings->google_analytics_id }}');
+    </script>
+  @endif
+
+  {!! $siteSettings->header_scripts ?? '' !!}
+
   {{-- SEO Meta Tags --}}
   <title>@yield('title', ($siteSettings->meta_title ?? 'Florascape - Premium Landscaping Services in UAE'))</title>
   <meta name="description"
@@ -42,82 +67,41 @@
     content="@yield('twitter_description', ($siteSettings->meta_description ?? 'Expert landscaping services transforming outdoor spaces across the UAE.'))">
   <meta name="twitter:image" content="{{ $ogImage }}">
 
-  {{-- JSON-LD Structured Data --}}
+  {{-- JSON-LD Structured Data (Dynamic) --}}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "name": "Florascape Landscape LLC",
+      "name": "{{ $siteSettings->site_name ?? 'Florascape Landscape LLC' }}",
       "image": "{{ url('/') }}/images/logo.png",
       "@id": "{{ url('/') }}",
       "url": "{{ url('/') }}",
-      "telephone": "+971-XX-XXX-XXXX",
+      "telephone": "{{ $siteSettings->phone ?? '+971-XXX-XXXX' }}",
+      "email": "{{ $siteSettings->email ?? 'hello@florascape.com' }}",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "UAE",
-        "addressLocality": "Dubai",
-        "addressRegion": "Dubai",
+        "streetAddress": "{{ $siteSettings->address ?? 'UAE' }}",
+        "addressLocality": "Abu Dhabi",
+        "addressRegion": "Abu Dhabi",
         "addressCountry": "AE"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 25.2048,
-        "longitude": 55.2708
       },
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
-        ],
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         "opens": "08:00",
         "closes": "18:00"
       },
       "sameAs": [
-        "https://www.facebook.com/florascape",
-        "https://www.instagram.com/florascape",
-        "https://www.linkedin.com/company/florascape"
+        "{{ $siteSettings->facebook_url ?? 'https://www.facebook.com/florascape' }}",
+        "{{ $siteSettings->instagram_url ?? 'https://www.instagram.com/florascape' }}",
+        "{{ $siteSettings->linkedin_url ?? 'https://www.linkedin.com/company/florascape' }}"
       ],
       "areaServed": {
         "@type": "Country",
         "name": "United Arab Emirates"
       },
-      "description": "Professional landscaping services in UAE specializing in landscape design, hardscaping, pool installation, and garden maintenance for residential and commercial properties.",
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Landscaping Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Landscape Design",
-              "description": "Custom 3D landscape design and planning services"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Hardscaping",
-              "description": "Patios, walkways, retaining walls, and outdoor living spaces"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Garden Maintenance",
-              "description": "Professional lawn care and garden maintenance services"
-            }
-          }
-        ]
-      }
+      "description": "{{ $siteSettings->meta_description ?? 'Professional landscaping services in UAE.' }}"
     }
     </script>
 
@@ -134,6 +118,11 @@
 </head>
 
 <body>
+  {{-- Google Tag Manager (noscript) --}}
+  @if($siteSettings && $siteSettings->gtm_id)
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ $siteSettings->gtm_id }}" height="0" width="0"
+        style="display:none;visibility:hidden"></iframe></noscript>
+  @endif
   <header class="site-header">
     <div class="container flex justify-between items-center">
       <a href="{{ route('home') }}" class="logo" style="display: flex; align-items: center;">
@@ -166,8 +155,24 @@
     <div class="container grid md:grid-cols-3 gap-8">
       <div>
         <h4 class="text-accent">{{ config('app.name') }}</h4>
-        <p style="color: #999; margin-top: 1rem;">Transforming outdoor spaces into living works of art.
-          Dedicated to quality, sustainability, and beauty.</p>
+        <p style="color: #999; margin-top: 1rem;">
+          {{ $siteSettings->meta_description ?? 'Transforming outdoor spaces into living works of art.' }}</p>
+
+        <div class="flex gap-4" style="margin-top: 1.5rem;">
+          @if($siteSettings->facebook_url)
+            <a href="{{ $siteSettings->facebook_url }}" target="_blank" style="color: white; font-size: 1.5rem;">FB</a>
+          @endif
+          @if($siteSettings->instagram_url)
+            <a href="{{ $siteSettings->instagram_url }}" target="_blank" style="color: white; font-size: 1.5rem;">IG</a>
+          @endif
+          @if($siteSettings->linkedin_url)
+            <a href="{{ $siteSettings->linkedin_url }}" target="_blank" style="color: white; font-size: 1.5rem;">IN</a>
+          @endif
+          @if($siteSettings->whatsapp_number)
+            <a href="https://wa.me/{{ $siteSettings->whatsapp_number }}" target="_blank"
+              style="color: white; font-size: 1.5rem;">WA</a>
+          @endif
+        </div>
       </div>
       <div>
         <h4 class="text-accent">Quick Links</h4>
@@ -177,16 +182,21 @@
           <a href="{{ route('portfolio') }}">Portfolio</a>
           <a href="{{ route('about') }}">About Us</a>
           <a href="{{ route('contact') }}">Contact</a>
+          <a href="{{ url('/sitemap.xml') }}">Sitemap</a>
         </div>
       </div>
       <div>
         <h4 class="text-accent">Contact</h4>
         <p style="color: #999; margin-top: 1rem;">
-          123 Green Valley Way<br>
-          Springfield, ST 12345<br>
-          <br>
-          (555) 123-4567<br>
-          hello@florascape.com
+          @if($siteSettings->address)
+            {!! nl2br(e($siteSettings->address)) !!}<br><br>
+          @endif
+          @if($siteSettings->phone)
+            {{ $siteSettings->phone }}<br>
+          @endif
+          @if($siteSettings->email)
+            {{ $siteSettings->email }}
+          @endif
         </p>
       </div>
     </div>
@@ -222,6 +232,7 @@
       }
     });
   </script>
+  {!! $siteSettings->footer_scripts ?? '' !!}
 </body>
 
 </html>

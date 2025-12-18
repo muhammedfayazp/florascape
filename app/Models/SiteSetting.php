@@ -17,6 +17,17 @@ class SiteSetting extends Model
         'meta_keywords',
         'og_image',
         'favicon',
-        'social_links'
+        'social_links',
+        'phone',
+        'email',
+        'address',
+        'google_analytics_id',
+        'gtm_id',
+        'header_scripts',
+        'footer_scripts',
+        'facebook_url',
+        'instagram_url',
+        'linkedin_url',
+        'whatsapp_number'
     ];
 }

@@ -56,4 +56,7 @@ Route::get('/contact', function () {
     return view('contact', compact('sections'));
 })->name('contact');
 
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index']);
+Route::get('/robots.txt', [\App\Http\Controllers\RobotsController::class, 'index']);
+
 Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
