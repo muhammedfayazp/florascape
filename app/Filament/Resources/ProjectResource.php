@@ -41,6 +41,9 @@ class ProjectResource extends Resource
                 Forms\Components\TextInput::make('sort_order')
                     ->numeric()
                     ->default(0),
+                Forms\Components\Toggle::make('is_visible_on_homepage')
+                    ->label('Visible on Homepage')
+                    ->default(true),
             ]);
     }
 
@@ -52,6 +55,8 @@ class ProjectResource extends Resource
                 Tables\Columns\TextColumn::make('title')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('category.name')->sortable(),
                 Tables\Columns\TextColumn::make('sort_order')->sortable(),
+                Tables\Columns\ToggleColumn::make('is_visible_on_homepage')
+                    ->label('Home'),
             ])
             ->defaultSort('sort_order', 'asc')
             ->reorderable('sort_order')

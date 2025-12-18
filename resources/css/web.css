@@ -1625,3 +1625,73 @@ img {
         overflow: hidden;
     }
 }
+
+/* ========================================
+   HeroSlider Mobile Responsiveness
+   ======================================== */
+@media (max-width: 991px) {
+    .slide-content {
+        width: 70%;
+        left: 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-swiper {
+        height: 60vh;
+    }
+
+    .slide-content {
+        width: 90%;
+        left: 5%;
+        padding: 2rem;
+        top: 45%;
+    }
+
+    .slide-title {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .slide-text {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .controls-bar {
+        width: 100%;
+        padding: 1rem 1.5rem;
+    }
+
+    .controls-bar .swiper-pagination,
+    .swiper-pagination-current {
+        font-size: 2rem;
+    }
+
+    .swiper-pagination-total {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-swiper {
+        height: 55vh;
+    }
+
+    .slide-title {
+        font-size: 1.8rem;
+    }
+
+    .slide-text {
+        font-size: 1rem;
+    }
+
+    .slide-content {
+        padding: 1.5rem;
+    }
+
+    .btn-green {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}

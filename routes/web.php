@@ -16,24 +16,43 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $categories = \App\Models\ProjectCategory::with([
         'projects' => function ($query) {
-            $query->orderBy('sort_order');
+            $query->where('is_visible_on_homepage', true)->orderBy('sort_order');
         }
     ])->orderBy('sort_order')->get();
 
     $heroSlides = \App\Models\Slider::where('type', 'homepage')->first();
 
-    return view('welcome', compact('categories', 'heroSlides'));
+    $sections = \App\Models\PageSection::where('is_active', true)->get()->keyBy('section_key');
+
+    return view('welcome', compact('categories', 'heroSlides', 'sections'));
 })->name('home');
+
+Route::get('/portfolio', function () {
+    $categories = \App\Models\ProjectCategory::with([
+        'projects' => function ($query) {
+            $query->orderBy('sort_order');
+        }
+    ])->orderBy('sort_order')->get();
+
+    $sections = \App\Models\PageSection::where('is_active', true)->get()->keyBy('section_key');
+
+    return view('portfolio', compact('categories', 'sections'));
+})->name('portfolio');
 
 Route::get('/services', function () {
     $services = \App\Models\Service::orderBy('sort_order')->get();
-    return view('services', compact('services'));
+    $sections = \App\Models\PageSection::where('is_active', true)->get()->keyBy('section_key');
+    return view('services', compact('services', 'sections'));
 })->name('services');
 
 Route::get('/about', function () {
-    return view('about');
+    $sections = \App\Models\PageSection::where('is_active', true)->get()->keyBy('section_key');
+    return view('about', compact('sections'));
 })->name('about');
 
 Route::get('/contact', function () {
-    return view('contact');
+    $sections = \App\Models\PageSection::where('is_active', true)->get()->keyBy('section_key');
+    return view('contact', compact('sections'));
 })->name('contact');
+
+Route::post('/contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');

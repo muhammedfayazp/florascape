@@ -129,7 +129,8 @@
   <header class="site-header">
     <div class="container flex justify-between items-center">
       <a href="{{ route('home') }}" class="logo" style="display: flex; align-items: center;">
-        <img src="{{ asset('images/florascape-logo.png') }}" alt="Florascape Logo" style="height: 70px; width: auto;">
+        <img loading="lazy" src="{{ asset('images/florascape-logo.png') }}" alt="Florascape Logo"
+          style="height: 70px; width: auto;">
       </a>
 
       <button class="mobile-menu-btn" aria-label="Toggle Menu">
@@ -142,7 +143,7 @@
       <nav id="main-nav">
         <a href="{{ route('home') }}" class="nav-link">Home</a>
         <a href="{{ route('services') }}" class="nav-link">Services</a>
-        <a href="{{ route('home') }}#gallery" class="nav-link">Gallery</a>
+        <a href="{{ route('portfolio') }}" class="nav-link">Portfolio</a>
         <a href="{{ route('about') }}" class="nav-link">About</a>
         <a href="{{ route('contact') }}" class="nav-link">Contact</a>
       </nav>
@@ -165,6 +166,7 @@
         <div class="flex flex-col gap-4" style="margin-top: 1rem;">
           <a href="{{ route('home') }}">Home</a>
           <a href="{{ route('services') }}">Services</a>
+          <a href="{{ route('portfolio') }}">Portfolio</a>
           <a href="{{ route('about') }}">About Us</a>
           <a href="{{ route('contact') }}">Contact</a>
         </div>

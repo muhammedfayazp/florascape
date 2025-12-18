@@ -9,7 +9,11 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['project_category_id', 'title', 'description', 'image', 'sort_order'];
+    protected $fillable = ['project_category_id', 'title', 'description', 'image', 'sort_order', 'is_visible_on_homepage'];
+
+    protected $casts = [
+        'is_visible_on_homepage' => 'boolean',
+    ];
 
     public function category()
     {

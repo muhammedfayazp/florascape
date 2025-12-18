@@ -258,5 +258,150 @@ class DemoContentSeeder extends Seeder
             ['type' => 'homepage'],
             ['slides' => $slides]
         );
+
+        // 6. Page Sections
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'about_us'],
+            [
+                'title' => 'Transforming Landscapes, Enriching Lives',
+                'subtitle' => 'Our Story',
+                'content' => [
+                    ['description' => 'At Florascape Landscape LLC, we believe that outdoor spaces are more than just land – they are living canvases waiting to be transformed into masterpieces.'],
+                    ['description' => 'With over a decade of experience in the UAE, our team of dedicated designers and craftsmen blend traditional expertise with modern sustainability to create unique outdoor environments.'],
+                    ['description' => 'From private residential gardens to large-scale commercial developments, we handle every project with precision, passion, and a commitment to excellence.']
+                ],
+                'image' => 'https://images.unsplash.com/photo-1598902108854-10e335adac99?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+                'is_active' => true,
+                'sort_order' => 1,
+            ]
+        );
+
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'why_choose_us'],
+            [
+                'title' => 'Why Choose Florascape?',
+                'subtitle' => 'The Florascape Difference',
+                'content' => [
+                    ['title' => 'Quality Workmanship', 'description' => 'Uncompromising attention to detail in every brick laid and plant placed.'],
+                    ['title' => 'Timely Delivery', 'description' => 'We respect your time and commitments, ensuring projects are completed as scheduled.'],
+                    ['title' => 'Sustainable Practices', 'description' => 'Eco-friendly solutions designed specifically for the UAE climate.'],
+                    ['title' => 'Bespoke Design', 'description' => 'Tailored landscapes that reflect your personality and lifestyle.']
+                ],
+                'is_active' => true,
+                'sort_order' => 2,
+            ]
+        );
+
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'about_hero'],
+            [
+                'title' => 'About Florascape',
+                'subtitle' => 'Cultivating beauty and harmony in every outdoor space we touch.',
+                'content' => [],
+                'is_active' => true,
+                'sort_order' => 4,
+            ]
+        );
+
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'about_story'],
+            [
+                'title' => 'Our Story',
+                'subtitle' => '"We don\'t just plant gardens; we create sanctuaries where memories are grown." — Sarah Jenkins, Founder',
+                'image' => 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+                'content' => [
+                    ['description' => 'Founded in 2010, Florascape began with a simple mission: to reconnect people with nature through thoughtful landscape design.'],
+                    ['description' => 'We believe that a garden is more than just plants; it\'s a living ecosystem that enhances your quality of life. Our approach combines horticultural expertise with artistic vision.'],
+                ],
+                'is_active' => true,
+                'sort_order' => 5,
+            ]
+        );
+
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'about_values'],
+            [
+                'title' => 'Our Values',
+                'content' => [
+                    ['title' => 'Sustainability', 'description' => 'We prioritize native plants, water-efficient irrigation, and organic fertilizers to protect our local ecosystem.'],
+                    ['title' => 'Quality', 'description' => 'We source only the healthiest plants and highest-grade materials to ensure your landscape stands the test of time.'],
+                    ['title' => 'Integrity', 'description' => 'Honest communication, transparent pricing, and a commitment to doing what we say we\'ll do.'],
+                ],
+                'is_active' => true,
+                'sort_order' => 6,
+            ]
+        );
+
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'about_team'],
+            [
+                'title' => 'Meet The Team',
+                'content' => [
+                    [
+                        'title' => 'Sarah Jenkins',
+                        'description' => 'Founder & Lead Designer. 20+ years of landscape architecture experience.',
+                        'image' => 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80'
+                    ],
+                    [
+                        'title' => 'Michael Chen',
+                        'description' => 'Operations Manager. Ensures every project runs smoothly and on time.',
+                        'image' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80'
+                    ],
+                    [
+                        'title' => 'Emma Rodriguez',
+                        'description' => 'Head Horticulturist. Expert in native flora and plant health.',
+                        'image' => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80'
+                    ],
+                ],
+                'is_active' => true,
+                'sort_order' => 7,
+            ]
+        );
+
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'contact_hero'],
+            [
+                'title' => 'Get In Touch',
+                'subtitle' => 'We\'d love to hear about your project. Fill out the form below or give us a call.',
+                'is_active' => true,
+                'sort_order' => 8,
+            ]
+        );
+
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'contact_info'],
+            [
+                'title' => 'Contact Information',
+                'subtitle' => 'Reach out to us for consultations, quotes, or any questions you might have.',
+                'content' => [
+                    ['title' => 'Address', 'description' => '123 Green Valley Way, Springfield, ST 12345'],
+                    ['title' => 'Phone', 'description' => '(555) 123-4567'],
+                    ['title' => 'Email', 'description' => 'hello@florascape.com'],
+                    ['title' => 'Hours', 'description' => 'Mon-Fri: 8am - 6pm, Sat: 9am - 4pm, Sun: Closed'],
+                ],
+                'is_active' => true,
+                'sort_order' => 9,
+            ]
+        );
+
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'services_hero'],
+            [
+                'title' => 'Design. Build. Maintain.',
+                'subtitle' => 'Comprehensive landscaping solutions from pool construction to garden maintenance',
+                'is_active' => true,
+                'sort_order' => 10,
+            ]
+        );
+
+        \App\Models\PageSection::updateOrCreate(
+            ['section_key' => 'portfolio_hero'],
+            [
+                'title' => 'Landscape & Pool Gallery',
+                'subtitle' => 'Explore our portfolio of transformed outdoor spaces, from private residential oases to expansive commercial landscapes across the UAE.',
+                'is_active' => true,
+                'sort_order' => 11,
+            ]
+        );
     }
 }

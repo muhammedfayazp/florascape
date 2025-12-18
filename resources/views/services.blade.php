@@ -4,17 +4,19 @@
 
 @section('content')
     {{-- Hero Section --}}
-    <div class="bg-primary text-center" style="padding: 8rem 0 4rem; color: white;">
-        <div class="container animate-fade-in">
-            <p
-                style="font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; opacity: 0.9;">
-                Services Provided</p>
-            <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">Design. Build. Maintain.</h1>
-            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto;">
-                Comprehensive landscaping solutions from pool construction to garden maintenance
-            </p>
+    @if(isset($sections['services_hero']))
+        <div class="bg-primary text-center" style="padding: 8rem 0 4rem; color: white;">
+            <div class="container animate-fade-in">
+                <p
+                    style="font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; opacity: 0.9;">
+                    Services Provided</p>
+                <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">{{ $sections['services_hero']->title }}</h1>
+                <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto;">
+                    {{ $sections['services_hero']->subtitle }}
+                </p>
+            </div>
         </div>
-    </div>
+    @endif
 
     {{-- Main Services Grid --}}
     <section class="section">
@@ -73,18 +75,21 @@
         </div>
     </section>
 
-    {{-- CTA Section --}}
-    <section class="section bg-primary text-center">
-        <div class="container">
-            <h2 style="color: white; margin-bottom: 1.5rem;">Ready to Transform Your Outdoor Space?</h2>
-            <p
-                style="color: rgba(255,255,255,0.9); margin-bottom: 2.5rem; font-size: 1.2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                Contact us today for a free consultation and discover how we can bring your landscaping vision to life.
-            </p>
-            <a href="{{ route('contact') }}" class="btn btn-primary"
-                style="background-color: var(--color-accent); color: var(--color-bg-dark); font-size: 1.1rem; padding: 1.2rem 3rem;">
-                Get Free Consultation
-            </a>
-        </div>
-    </section>
+    {{-- Dynamic Footer CTA --}}
+    @if(isset($sections['footer_cta']))
+        <section class="section bg-primary text-center">
+            <div class="container">
+                <h2 style="color: white; margin-bottom: 1.5rem;">{{ $sections['footer_cta']->title }}</h2>
+                <p style="color: rgba(255,255,255,0.9); margin-bottom: 2.5rem; font-size: 1.2rem;">
+                    {{ $sections['footer_cta']->subtitle }}
+                </p>
+                @php
+                    $btnText = $sections['footer_cta']->content[0]['description'] ?? 'Start Your Project';
+                    $btnLink = $sections['footer_cta']->content[1]['description'] ?? route('contact');
+                @endphp
+                <a href="{{ $btnLink }}" class="btn btn-primary"
+                    style="background-color: var(--color-accent); color: var(--color-bg-dark);">{{ $btnText }}</a>
+            </div>
+        </section>
+    @endif
 @endsection

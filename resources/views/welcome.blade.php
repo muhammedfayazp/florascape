@@ -6,36 +6,34 @@
     <div id="hero-slider-root" data-initial-slides='@json($heroSlides ? $heroSlides->slides : [])'></div>
 
     {{-- About Us Section --}}
-    <section class="about-section">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1593113646773-028c619d4c72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Florascape Landscaping Professional at Work">
-                </div>
-                <div class="about-text">
-                    <p class="about-label">About Us</p>
-                    <h2 class="about-heading">Creating Outdoor Masterpieces Across the UAE</h2>
-                    <p class="about-paragraph">
-                        We FLORASCAPE LANDSCAPE LLC, is a dynamic and creative landscaping startup leading by experienced
-                        professionals dedicated to transforming outdoor spaces into breathtaking and functional
-                        environments.
-                    </p>
-                    <p class="about-paragraph">
-                        Founded on the principles of creativity, sustainability, and professionalism, we specialize in
-                        providing comprehensive landscaping services tailored to meet the unique needs and preferences of
-                        our clients. With a passionate team of experts and a commitment to excellence, we aim to set new
-                        standards of quality and reliability in the landscaping industry.
-                    </p>
-                    <p class="about-paragraph">
-                        Our mission is to enrich lives and enhance communities by creating stunning outdoor landscapes that
-                        inspire and delight. We strive to exceed our clients' expectations through unparalleled
-                        craftsmanship, attention to detail, and environmentally conscious practices.
-                    </p>
+    @if(isset($sections['about_us']))
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-image">
+                        @php
+                            $aboutImage = $sections['about_us']->image;
+                            $aboutImageUrl = $aboutImage && !Str::startsWith($aboutImage, 'http') ? asset('storage/' . $aboutImage) : $aboutImage;
+                        @endphp
+                        <img loading="lazy"
+                            src="{{ $aboutImageUrl ?? 'https://images.unsplash.com/photo-1593113646773-028c619d4c72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}"
+                            alt="{{ $sections['about_us']->title }}">
+                    </div>
+                    <div class="about-text">
+                        <p class="about-label">{{ $sections['about_us']->subtitle ?? 'About Us' }}</p>
+                        <h2 class="about-heading">{{ $sections['about_us']->title }}</h2>
+                        @if($sections['about_us']->content)
+                            @foreach($sections['about_us']->content as $item)
+                                <p class="about-paragraph">
+                                    {{ $item['description'] ?? '' }}
+                                </p>
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     {{-- Cost Calculator Section --}}
     <section class="calculator-section">
@@ -100,63 +98,65 @@
 
     {{-- Features / Why Choose Us --}}
 
-    <section class="section">
-        <div class="container grid md:grid-cols-2 gap-8 items-center">
-            <div>
-                <img src="https://images.unsplash.com/photo-1600596542815-e495d915993a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                    alt="Beautiful Garden" style="border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-            </div>
-            <div>
-                <h2 class="text-primary">Why Florascape?</h2>
-                <p style="color: #666; margin-bottom: 2rem; font-size: 1.1rem;">
-                    We believe your outdoor space should be an extension of your home—a place to relax, entertain, and
-                    connect with nature.
-                </p>
+    {{-- Features / Why Choose Us --}}
+    @if(isset($sections['why_choose_us']))
+        <section class="section">
+            <div class="container grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    @php
+                        $whyImage = $sections['why_choose_us']->image;
+                        $whyImageUrl = $whyImage && !Str::startsWith($whyImage, 'http') ? asset('storage/' . $whyImage) : $whyImage;
+                    @endphp
+                    <img loading="lazy"
+                        src="{{ $whyImageUrl ?? 'https://images.unsplash.com/photo-1600596542815-e495d915993a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' }}"
+                        alt="{{ $sections['why_choose_us']->title }}"
+                        style="border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                </div>
+                <div>
+                    <h2 class="text-primary">{{ $sections['why_choose_us']->title }}</h2>
+                    <p style="color: #666; margin-bottom: 2rem; font-size: 1.1rem;">
+                        {{ $sections['why_choose_us']->subtitle }}
+                    </p>
 
-                <div class="grid grid-cols-1 gap-4">
-                    <div class="flex items-center gap-4">
-                        <div style="background: var(--color-off-white); padding: 1rem; border-radius: 50%;">✨</div>
-                        <div>
-                            <h4 style="margin-bottom: 0.25rem;">Quality Workmanship</h4>
-                            <p style="font-size: 0.9rem; color: #666;">Premium materials and meticulous attention to detail
-                                in every project.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div style="background: var(--color-off-white); padding: 1rem; border-radius: 50%;">⏱️</div>
-                        <div>
-                            <h4 style="margin-bottom: 0.25rem;">Timely Delivery</h4>
-                            <p style="font-size: 0.9rem; color: #666;">Projects completed on schedule with efficient project
-                                management.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div style="background: var(--color-off-white); padding: 1rem; border-radius: 50%;">🌱</div>
-                        <div>
-                            <h4 style="margin-bottom: 0.25rem;">Eco-Friendly Practices</h4>
-                            <p style="font-size: 0.9rem; color: #666;">Sustainable materials and native plant selection.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div style="background: var(--color-off-white); padding: 1rem; border-radius: 50%;">👷</div>
-                        <div>
-                            <h4 style="margin-bottom: 0.25rem;">Expert Craftsmanship</h4>
-                            <p style="font-size: 0.9rem; color: #666;">Skilled team with decades of combined experience.</p>
-                        </div>
+                    <div class="grid grid-cols-1 gap-4">
+                        @if($sections['why_choose_us']->content)
+                            @foreach($sections['why_choose_us']->content as $index => $item)
+                                <div class="flex items-center gap-4">
+                                    <div style="background: var(--color-off-white); padding: 1rem; border-radius: 50%;">
+                                        @php
+                                            $icons = ['✨', '⏱️', '🌱', '👷', '🎨', '🏗️'];
+                                            $icon = $icons[$index % count($icons)];
+                                        @endphp
+                                        {{ $icon }}
+                                    </div>
+                                    <div>
+                                        <h4 style="margin-bottom: 0.25rem;">{{ $item['title'] ?? '' }}</h4>
+                                        <p style="font-size: 0.9rem; color: #666;">{{ $item['description'] ?? '' }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
-    {{-- CTA --}}
-    <section class="section bg-primary text-center">
-        <div class="container">
-            <h2 style="color: white; margin-bottom: 1.5rem;">Ready to Transform Your Space?</h2>
-            <p style="color: rgba(255,255,255,0.9); margin-bottom: 2.5rem; font-size: 1.2rem;">Schedule a free consultation
-                with our design team today.</p>
-            <a href="{{ route('contact') }}" class="btn btn-primary"
-                style="background-color: var(--color-accent); color: var(--color-bg-dark);">Start Your Project</a>
-        </div>
-    </section>
+    {{-- Dynamic Footer CTA --}}
+    @if(isset($sections['footer_cta']))
+        <section class="section bg-primary text-center">
+            <div class="container">
+                <h2 style="color: white; margin-bottom: 1.5rem;">{{ $sections['footer_cta']->title }}</h2>
+                <p style="color: rgba(255,255,255,0.9); margin-bottom: 2.5rem; font-size: 1.2rem;">
+                    {{ $sections['footer_cta']->subtitle }}
+                </p>
+                @php
+                    $btnText = $sections['footer_cta']->content[0]['description'] ?? 'Start Your Project';
+                    $btnLink = $sections['footer_cta']->content[1]['description'] ?? route('contact');
+                @endphp
+                <a href="{{ $btnLink }}" class="btn btn-primary"
+                    style="background-color: var(--color-accent); color: var(--color-bg-dark);">{{ $btnText }}</a>
+            </div>
+        </section>
+    @endif
 @endsection

@@ -10,12 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('visits', function (Blueprint $table) {
-            $table->id();
-            $table->string('ip_address')->nullable();
-            $table->string('path')->nullable();
-            $table->text('user_agent')->nullable();
-            $table->timestamps();
+        Schema::table('projects', function (Blueprint $table) {
+            $table->boolean('is_visible_on_homepage')->default(true)->after('description');
         });
     }
 
@@ -24,6 +20,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('visits');
+        Schema::table('projects', function (Blueprint $table) {
+            $table->dropColumn('is_visible_on_homepage');
+        });
     }
 };
