@@ -10,16 +10,24 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Section;
 use Filament\Notifications\Notification;
 use App\Models\SiteSetting;
+use BackedEnum;
+use UnitEnum;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use App\Filament\Schemas\SiteSettingsForm;
 
 class SiteSettings extends Page implements HasForms
 {
     use InteractsWithForms;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
+
     protected static ?string $navigationLabel = 'Site Settings';
     protected static ?string $title = 'Site Visibility Settings';
 
-    protected static string $view = 'filament.pages.site-settings';
+    // protected static string $view = 'filament.pages.site-settings';
+
+    protected string $view = 'filament.pages.site-settings';
 
     public ?array $data = [];
 
@@ -29,74 +37,12 @@ class SiteSettings extends Page implements HasForms
         $this->form->fill($settings->toArray());
     }
 
-    public function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Section::make('General Configuration')
-                    ->schema([
-                        Toggle::make('is_published')
-                            ->label('Publish Website')
-                            ->onColor('success')
-                            ->offColor('danger')
-                            ->inline(false),
-                        \Filament\Forms\Components\TextInput::make('site_name')
-                            ->label('Site Name')
-                            ->required(),
-                    ]),
-
-                Section::make('Business Information (Schema.org)')
-                    ->schema([
-                        \Filament\Forms\Components\TextInput::make('phone')
-                            ->tel(),
-                        \Filament\Forms\Components\TextInput::make('email')
-                            ->email(),
-                        \Filament\Forms\Components\Textarea::make('address')
-                            ->rows(2),
-                    ])->columns(2),
-
-                Section::make('SEO Configuration')
-                    ->schema([
-                        \Filament\Forms\Components\TextInput::make('meta_title'),
-                        \Filament\Forms\Components\Textarea::make('meta_description')
-                            ->rows(3),
-                        \Filament\Forms\Components\TextInput::make('meta_keywords'),
-                        \Filament\Forms\Components\FileUpload::make('og_image')
-                            ->image()
-                            ->directory('settings'),
-                        \Filament\Forms\Components\FileUpload::make('favicon')
-                            ->image()
-                            ->directory('settings'),
-                    ])->columns(1),
-
-                Section::make('Marketing & Tracking')
-                    ->schema([
-                        \Filament\Forms\Components\TextInput::make('google_analytics_id')
-                            ->label('Google Analytics (G-XXXXXX)'),
-                        \Filament\Forms\Components\TextInput::make('gtm_id')
-                            ->label('Google Tag Manager (GTM-XXXXXX)'),
-                        \Filament\Forms\Components\Textarea::make('header_scripts')
-                            ->label('Custom Header Scripts')
-                            ->helperText('Add tracking codes, pixels, etc. inside <head>'),
-                        \Filament\Forms\Components\Textarea::make('footer_scripts')
-                            ->label('Custom Footer Scripts')
-                            ->helperText('Add tracking codes before </body>'),
-                    ])->columns(2),
-
-                Section::make('Social Media Links')
-                    ->schema([
-                        \Filament\Forms\Components\TextInput::make('facebook_url')
-                            ->url(),
-                        \Filament\Forms\Components\TextInput::make('instagram_url')
-                            ->url(),
-                        \Filament\Forms\Components\TextInput::make('linkedin_url')
-                            ->url(),
-                        \Filament\Forms\Components\TextInput::make('whatsapp_number')
-                            ->helperText('Include country code without + (e.g., 971501234567)'),
-                    ])->columns(2),
-            ])
-            ->statePath('data');
+        return SiteSettingsForm::configure($schema);
     }
+
+
 
     public function save(): void
     {

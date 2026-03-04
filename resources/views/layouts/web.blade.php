@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -68,6 +68,7 @@
   <meta name="twitter:image" content="{{ $ogImage }}">
 
   {{-- JSON-LD Structured Data (Dynamic) --}}
+    @verbatim
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -104,7 +105,7 @@
       "description": "{{ $siteSettings->meta_description ?? 'Professional landscaping services in UAE.' }}"
     }
     </script>
-
+  @endverbatim
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
