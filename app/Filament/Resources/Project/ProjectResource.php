@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Project;
 
 use App\Filament\Resources\Project\Pages;
 use App\Filament\Resources\Project\Schemas\ProjectForm;
