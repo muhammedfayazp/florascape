@@ -191,13 +191,13 @@
       <div>
         <h4 class="text-accent">Contact</h4>
         <p style="color: #999; margin-top: 1rem;">
-          @if($siteSettings->address)
+          @if(optional($siteSettings)->address)
             {!! nl2br(e($siteSettings->address)) !!}<br><br>
           @endif
-          @if($siteSettings->phone)
+          @if(optional($siteSettings)->phone)
             {{ $siteSettings->phone }}<br>
           @endif
-          @if($siteSettings->email)
+          @if(optional($siteSettings)->email)
             {{ $siteSettings->email }}
           @endif
         </p>
