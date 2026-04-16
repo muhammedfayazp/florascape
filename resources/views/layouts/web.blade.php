@@ -160,19 +160,21 @@
           {{ $siteSettings->meta_description ?? 'Transforming outdoor spaces into living works of art.' }}</p>
 
         <div class="flex gap-4" style="margin-top: 1.5rem;">
-          @if($siteSettings->facebook_url)
-            <a href="{{ $siteSettings->facebook_url }}" target="_blank" style="color: white; font-size: 1.5rem;">FB</a>
-          @endif
-          @if($siteSettings->instagram_url)
-            <a href="{{ $siteSettings->instagram_url }}" target="_blank" style="color: white; font-size: 1.5rem;">IG</a>
-          @endif
-          @if($siteSettings->linkedin_url)
-            <a href="{{ $siteSettings->linkedin_url }}" target="_blank" style="color: white; font-size: 1.5rem;">IN</a>
-          @endif
-          @if($siteSettings->whatsapp_number)
-            <a href="https://wa.me/{{ $siteSettings->whatsapp_number }}" target="_blank"
-              style="color: white; font-size: 1.5rem;">WA</a>
-          @endif
+            @if(optional($siteSettings)->facebook_url)
+                <a href="{{ $siteSettings->facebook_url }}" target="_blank" style="color: white; font-size: 1.5rem;">FB</a>
+            @endif
+
+            @if(optional($siteSettings)->instagram_url)
+                <a href="{{ $siteSettings->instagram_url }}" target="_blank" style="color: white; font-size: 1.5rem;">IG</a>
+            @endif
+
+            @if(optional($siteSettings)->linkedin_url)
+                <a href="{{ $siteSettings->linkedin_url }}" target="_blank" style="color: white; font-size: 1.5rem;">IN</a>
+            @endif
+
+            @if(optional($siteSettings)->whatsapp_number)
+                <a href="https://wa.me/{{ $siteSettings->whatsapp_number }}" target="_blank" style="color: white; font-size: 1.5rem;">WA</a>
+            @endif
         </div>
       </div>
       <div>
