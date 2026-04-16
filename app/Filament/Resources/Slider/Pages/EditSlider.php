@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Slider\Pages;
 
-use App\Filament\Resources\SliderResource;
+use App\Filament\Resources\Slider\SliderResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 

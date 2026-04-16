@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Service;
 
 use App\Filament\Resources\Service\Pages;
 use App\Filament\Resources\Service\Schemas\ServiceForm;
 use App\Filament\Resources\Service\Tables\ServicesTable;
-use App\Filament\Resources\ServiceResource\RelationManagers;
 use App\Models\Service;
 use Filament\Forms;
 use Filament\Forms\Form;

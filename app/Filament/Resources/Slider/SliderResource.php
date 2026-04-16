@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Slider;
 
 use App\Filament\Resources\Slider\Pages;
 use App\Filament\Resources\Slider\Schemas\SliderForm;

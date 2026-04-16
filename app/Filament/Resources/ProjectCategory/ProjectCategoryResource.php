@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\ProjectCategory;
 
 use App\Filament\Resources\ProjectCategory\Pages;
 use App\Filament\Resources\ProjectCategory\Schemas\ProjectCategoryForm;
 use App\Filament\Resources\ProjectCategory\Tables\ProjectCategoriesTable;
-use App\Filament\Resources\ProjectCategoryResource\RelationManagers;
 use App\Models\ProjectCategory;
 use Filament\Forms;
 use Filament\Forms\Form;
