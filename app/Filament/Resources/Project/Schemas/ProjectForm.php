@@ -23,7 +23,11 @@ class ProjectForm
                     ->maxLength(65535),
                 Forms\Components\FileUpload::make('image')
                     ->image()
+                    ->disk('s3')
+                    ->visibility('public')
                     ->directory('projects')
+                    ->openable()
+                    ->downloadable()
                     ->required(),
                 Forms\Components\TextInput::make('sort_order')
                     ->numeric()

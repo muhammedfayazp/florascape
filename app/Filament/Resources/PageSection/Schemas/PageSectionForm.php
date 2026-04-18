@@ -16,7 +16,8 @@ class PageSectionForm
                     ->schema([
                         Forms\Components\TextInput::make('section_key')
                             ->required()
-                            ->readOnly()
+                            ->readOnlyOn('edit')
+                            ->helperText('Used as the internal identifier for this section, for example `about_hero`.')
                             ->maxLength(191),
                         Forms\Components\Toggle::make('is_active')
                             ->required()
@@ -36,7 +37,11 @@ class PageSectionForm
                             ->maxLength(191),
                         Forms\Components\FileUpload::make('image')
                             ->image()
-                            ->directory('page-sections'),
+                            ->disk('s3')
+                            ->visibility('public')
+                            ->directory('page-sections')
+                            ->openable()
+                            ->downloadable(),
                     ]),
 
                 Section::make('Detailed Content Items')
@@ -58,7 +63,11 @@ class PageSectionForm
                                 Forms\Components\FileUpload::make('image')
                                     ->label('Item Image (Optional)')
                                     ->image()
-                                    ->directory('page-sections-items'),
+                                    ->disk('s3')
+                                    ->visibility('public')
+                                    ->directory('page-sections-items')
+                                    ->openable()
+                                    ->downloadable(),
                             ])
                             ->collapsible()
                             ->itemLabel(fn (array $state): ?string => $state['title'] ?? ($state['description'] ? substr($state['description'], 0, 50) . '...' : null)),

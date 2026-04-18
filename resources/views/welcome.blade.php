@@ -3,7 +3,29 @@
 @section('content')
     {{-- Hero Section (React) --}}
     {{-- Hero Section (React) --}}
-    <div id="hero-slider-root" data-initial-slides='@json($heroSlides ? $heroSlides->slides : [])'></div>
+    @php
+        $heroSlidesData = collect($heroSlides?->slides ?? [])->map(function (array $slide) {
+            $slide['image'] = !empty($slide['image']) && !Str::startsWith($slide['image'], 'http')
+                ? \Illuminate\Support\Facades\Storage::url($slide['image'])
+                : ($slide['image'] ?? null);
+
+            return $slide;
+        })->values();
+
+        $galleryCategoriesData = $categories->map(function ($category) {
+            $categoryArray = $category->toArray();
+            $categoryArray['projects'] = collect($categoryArray['projects'] ?? [])->map(function (array $project) {
+                $project['image'] = !empty($project['image']) && !Str::startsWith($project['image'], 'http')
+                    ? \Illuminate\Support\Facades\Storage::url($project['image'])
+                    : ($project['image'] ?? null);
+
+                return $project;
+            })->values()->all();
+
+            return $categoryArray;
+        })->values();
+    @endphp
+    <div id="hero-slider-root" data-initial-slides='@json($heroSlidesData)'></div>
 
     {{-- About Us Section --}}
     @if(isset($sections['about_us']))
@@ -13,7 +35,7 @@
                     <div class="about-image">
                         @php
                             $aboutImage = $sections['about_us']->image;
-                            $aboutImageUrl = $aboutImage && !Str::startsWith($aboutImage, 'http') ? asset('storage/' . $aboutImage) : $aboutImage;
+                            $aboutImageUrl = $aboutImage && !Str::startsWith($aboutImage, 'http') ? \Illuminate\Support\Facades\Storage::url($aboutImage) : $aboutImage;
                         @endphp
                         <img loading="lazy"
                             src="{{ $aboutImageUrl ?? 'https://images.unsplash.com/photo-1593113646773-028c619d4c72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}"
@@ -73,7 +95,7 @@
 
     {{-- Gallery Section --}}
     <section id="gallery" class="gallery-section">
-        <div id="gallery-root" data-initial-data='@json($categories)'></div>
+        <div id="gallery-root" data-initial-data='@json($galleryCategoriesData)'></div>
     </section>
 
     {{-- Features / Why Choose Us --}}
@@ -85,7 +107,7 @@
                 <div>
                     @php
                         $whyImage = $sections['why_choose_us']->image;
-                        $whyImageUrl = $whyImage && !Str::startsWith($whyImage, 'http') ? asset('storage/' . $whyImage) : $whyImage;
+                        $whyImageUrl = $whyImage && !Str::startsWith($whyImage, 'http') ? \Illuminate\Support\Facades\Storage::url($whyImage) : $whyImage;
                     @endphp
                     <img loading="lazy"
                         src="{{ $whyImageUrl ?? 'https://images.unsplash.com/photo-1600596542815-e495d915993a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' }}"

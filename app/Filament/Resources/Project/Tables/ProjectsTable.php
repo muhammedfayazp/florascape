@@ -19,7 +19,8 @@ class ProjectsTable
     {
         return $table
             ->columns([
-                ImageColumn::make('image'),
+                ImageColumn::make('image')
+                    ->disk('s3'),
                 TextColumn::make('title')
                     ->searchable()
                     ->sortable(),

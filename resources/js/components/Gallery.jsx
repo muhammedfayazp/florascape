@@ -28,7 +28,7 @@ const Gallery = ({ initialData }) => {
             id: p.id,
             title: p.title,
             category: cat.slug,
-            image: p.image && !p.image.startsWith('http') ? `/storage/${p.image}` : p.image,
+            image: p.image,
             description: p.description
         }))
     ) : [

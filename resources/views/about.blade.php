@@ -37,7 +37,7 @@
                 <div>
                     @php
                         $storyImage = $sections['about_story']->image;
-                        $storyImageUrl = $storyImage && !Str::startsWith($storyImage, 'http') ? asset('storage/' . $storyImage) : $storyImage;
+                        $storyImageUrl = $storyImage && !Str::startsWith($storyImage, 'http') ? \Illuminate\Support\Facades\Storage::url($storyImage) : $storyImage;
                     @endphp
                     <img loading="lazy"
                         src="{{ $storyImageUrl ?? 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' }}"
@@ -77,7 +77,7 @@
                         @foreach($sections['about_team']->content as $item)
                             @php
                                 $memberImage = $item['image'] ?? null;
-                                $memberImageUrl = $memberImage && !Str::startsWith($memberImage, 'http') ? asset('storage/' . $memberImage) : ($memberImage ?? 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80');
+                                $memberImageUrl = $memberImage && !Str::startsWith($memberImage, 'http') ? \Illuminate\Support\Facades\Storage::url($memberImage) : ($memberImage ?? 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80');
                             @endphp
                             <div>
                                 <img loading="lazy" src="{{ $memberImageUrl }}" alt="{{ $item['title'] ?? 'Team Member' }}"

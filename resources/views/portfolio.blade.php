@@ -31,7 +31,7 @@
                         <div class="grid md:grid-cols-3 gap-8">
                             @foreach($category->projects as $project)
                                 @php
-                                    $imageUrl = $project->image && !Str::startsWith($project->image, 'http') ? asset('storage/' . $project->image) : $project->image;
+                                    $imageUrl = $project->image && !Str::startsWith($project->image, 'http') ? \Illuminate\Support\Facades\Storage::url($project->image) : $project->image;
                                 @endphp
                                 <div class="portfolio-card">
                                     <div class="portfolio-image">

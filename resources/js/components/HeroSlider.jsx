@@ -67,7 +67,7 @@ const HeroSlider = ({ slides = [] }) => {
             className="hero-swiper"
         >
             {finalSlides.map((slide, index) => {
-                const imageUrl = slide.image && !slide.image.startsWith('http') ? `/storage/${slide.image}` : slide.image;
+                const imageUrl = slide.image;
                 const ctaText = slide.cta_text || (slide.link && slide.link.includes('contact') ? 'Contact Us' : 'View Services') || 'Learn More';
 
                 return (

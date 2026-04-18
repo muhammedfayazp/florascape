@@ -7,7 +7,7 @@
                 @php
                     $imageUrl = Str::startsWith($slide['image'], 'http')
                         ? $slide['image']
-                        : asset('storage/' . $slide['image']);
+                        : \Illuminate\Support\Facades\Storage::url($slide['image']);
                 @endphp
 
                 <div class="swiper-slide relative" style="

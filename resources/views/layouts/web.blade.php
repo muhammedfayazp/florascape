@@ -41,7 +41,7 @@
   <link rel="canonical" href="{{ url()->current() }}">
 
   @if($siteSettings && $siteSettings->favicon)
-    <link rel="icon" type="image/x-icon" href="{{ asset('storage/' . $siteSettings->favicon) }}">
+    <link rel="icon" type="image/x-icon" href="{{ \Illuminate\Support\Facades\Storage::url($siteSettings->favicon) }}">
   @endif
 
   {{-- Open Graph / Facebook --}}
@@ -52,7 +52,7 @@
   <meta property="og:description"
     content="@yield('og_description', ($siteSettings->meta_description ?? 'Expert landscaping services transforming outdoor spaces across the UAE.'))">
   @php
-    $ogImage = $siteSettings && $siteSettings->og_image ? asset('storage/' . $siteSettings->og_image) : asset('images/og-image.jpg');
+    $ogImage = $siteSettings && $siteSettings->og_image ? \Illuminate\Support\Facades\Storage::url($siteSettings->og_image) : asset('images/og-image.jpg');
   @endphp
   <meta property="og:image" content="{{ $ogImage }}">
   <meta property="og:site_name" content="{{ $siteSettings->site_name ?? 'Florascape' }}">

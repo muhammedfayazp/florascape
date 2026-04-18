@@ -43,10 +43,18 @@ class SiteSettingsForm
                         Forms\Components\TextInput::make('meta_keywords'),
                         Forms\Components\FileUpload::make('og_image')
                             ->image()
-                            ->directory('settings'),
+                            ->disk('s3')
+                            ->visibility('public')
+                            ->directory('settings')
+                            ->openable()
+                            ->downloadable(),
                         Forms\Components\FileUpload::make('favicon')
                             ->image()
-                            ->directory('settings'),
+                            ->disk('s3')
+                            ->visibility('public')
+                            ->directory('settings')
+                            ->openable()
+                            ->downloadable(),
                     ])
                     ->columns(1),
 
