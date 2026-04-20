@@ -38,7 +38,6 @@ class PageSectionForm
                         Forms\Components\FileUpload::make('image')
                             ->image()
                             ->disk('s3')
-                            ->visibility('public')
                             ->directory('page-sections')
                             ->openable()
                             ->downloadable(),
@@ -64,7 +63,6 @@ class PageSectionForm
                                     ->label('Item Image (Optional)')
                                     ->image()
                                     ->disk('s3')
-                                    ->visibility('public')
                                     ->directory('page-sections-items')
                                     ->openable()
                                     ->downloadable(),

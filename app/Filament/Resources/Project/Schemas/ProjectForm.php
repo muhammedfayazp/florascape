@@ -24,7 +24,6 @@ class ProjectForm
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->disk('s3')
-                    ->visibility('public')
                     ->directory('projects')
                     ->openable()
                     ->downloadable()

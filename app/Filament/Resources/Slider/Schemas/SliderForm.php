@@ -21,7 +21,6 @@ class SliderForm
                     ->schema([
                         Forms\Components\FileUpload::make('image')
                             ->image()
-                            ->visibility('public')
                             ->directory('slides')
                             ->disk('s3')
                             ->openable()

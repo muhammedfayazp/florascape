@@ -44,14 +44,12 @@ class SiteSettingsForm
                         Forms\Components\FileUpload::make('og_image')
                             ->image()
                             ->disk('s3')
-                            ->visibility('public')
                             ->directory('settings')
                             ->openable()
                             ->downloadable(),
                         Forms\Components\FileUpload::make('favicon')
                             ->image()
                             ->disk('s3')
-                            ->visibility('public')
                             ->directory('settings')
                             ->openable()
                             ->downloadable(),

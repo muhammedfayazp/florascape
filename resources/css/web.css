@@ -550,25 +550,20 @@ img {
 /* Content Box (Left Side) - Updated to Dark Overlay */
 .slide-content {
     position: absolute;
-    top: 50%;
-    left: 8%;
-    transform: translateY(-50%);
-    width: 45%;
-    max-width: 650px;
-    background: rgba(0, 0, 0, 0.6);
-    /* Dark overlay */
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    padding: 3rem;
+    bottom: 12%; /* Moved to bottom */
+    left: 6%;
+    width: 38%; /* Slightly narrower */
+    max-width: 550px;
+    background: rgba(0, 0, 0, 0.45); /* More transparent */
+    backdrop-filter: blur(8px); /* Increased blur for readability */
+    -webkit-backdrop-filter: blur(8px);
+    padding: 2.5rem; /* Slightly more compact */
     color: white;
     text-align: left;
-    border-left: none;
-    /* Removed border */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: none;
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
 .slide-title {
