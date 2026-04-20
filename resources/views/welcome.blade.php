@@ -38,7 +38,8 @@
                             $aboutImageUrl = $aboutImage && !Str::startsWith($aboutImage, 'http') ? \Illuminate\Support\Facades\Storage::url($aboutImage) : $aboutImage;
                         @endphp
                         <img loading="lazy"
-                            src="{{ $aboutImageUrl ?? 'https://images.unsplash.com/photo-1593113646773-028c619d4c72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}"
+                            src="{{ Storage::disk('s3')->url($section->image) }}"
+                            {{-- src="{{ $aboutImageUrl ?? 'https://images.unsplash.com/photo-1593113646773-028c619d4c72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}" --}}
                             alt="{{ $sections['about_us']->title }}">
                     </div>
                     <div class="about-text">
