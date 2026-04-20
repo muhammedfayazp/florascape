@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Role::firstOrCreate(['name' => 'admin']);
+
         $user = User::create([
             'name' => 'Admin',
             'email' => 'info@florascape.ae',
