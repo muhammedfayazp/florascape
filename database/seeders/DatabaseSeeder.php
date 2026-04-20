@@ -14,16 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $user = User::create([
+            'name' => 'Admin',
+            'email' => 'info@florascape.ae',
+            'password' => bcrypt('Flora@scape#23'),
+        ]);
 
-        User::firstOrCreate(
-            [
-                'email' => 'admin@example.com',
-            ],
-            [
-                'name' => 'Admin',
-                'password' => Hash::make('password123'),
-            ]
-        );
+        $user->assignRole('admin');
     }
 }
