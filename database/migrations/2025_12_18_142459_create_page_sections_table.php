@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('section_key')->unique();
             $table->string('title')->nullable();
-            $table->string('subtitle')->nullable();
+            $table->text('subtitle')->nullable();
             $table->json('content')->nullable();
             $table->string('image')->nullable();
             $table->boolean('is_active')->default(true);
