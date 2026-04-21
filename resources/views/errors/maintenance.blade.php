@@ -54,7 +54,7 @@
 
     <div class="contact">
         Need to reach us? <br>
-        <a href="mailto:hello@florascape.com" style="color: #4D9D45; text-decoration: none;">hello@florascape.com</a>
+        <a href="mailto:info@florascape.ae" style="color: #4D9D45; text-decoration: none;">info@florascape.ae</a>
     </div>
 </body>
 

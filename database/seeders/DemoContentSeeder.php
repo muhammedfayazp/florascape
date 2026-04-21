@@ -384,7 +384,7 @@ class DemoContentSeeder extends Seeder
                 'content' => [
                     ['title' => 'Address', 'description' => '123 Green Valley Way, Springfield, ST 12345'],
                     ['title' => 'Phone', 'description' => '(555) 123-4567'],
-                    ['title' => 'Email', 'description' => 'hello@florascape.com'],
+                    ['title' => 'Email', 'description' => 'info@florascape.ae'],
                     ['title' => 'Hours', 'description' => 'Mon-Fri: 8am - 6pm, Sat: 9am - 4pm, Sun: Closed'],
                 ],
                 'is_active' => true,
