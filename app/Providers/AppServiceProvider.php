@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
+
         // Share site settings with all views
         if (!app()->runningInConsole() && Schema::hasTable('site_settings')) {
             $settings = \App\Models\SiteSetting::first();
