@@ -28,6 +28,14 @@ class SiteSetting extends Model
         'facebook_url',
         'instagram_url',
         'linkedin_url',
-        'whatsapp_number'
+        'whatsapp_number',
+        'show_calculator',
+        'footer_tagline',
+        'footer_copyright',
+    ];
+
+    protected $casts = [
+        'is_published'    => 'boolean',
+        'show_calculator' => 'boolean',
     ];
 }

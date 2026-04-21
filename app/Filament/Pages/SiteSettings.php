@@ -5,13 +5,9 @@ namespace App\Filament\Pages;
 use Filament\Pages\Page;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Form;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Section;
 use Filament\Notifications\Notification;
 use App\Models\SiteSetting;
 use BackedEnum;
-use UnitEnum;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use App\Filament\Schemas\SiteSettingsForm;
@@ -21,12 +17,8 @@ class SiteSettings extends Page implements HasForms
     use InteractsWithForms;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
-
     protected static ?string $navigationLabel = 'Site Settings';
     protected static ?string $title = 'Site Visibility Settings';
-
-    // protected static string $view = 'filament.pages.site-settings';
-
     protected string $view = 'filament.pages.site-settings';
 
     public ?array $data = [];
@@ -37,12 +29,15 @@ class SiteSettings extends Page implements HasForms
         $this->form->fill($settings->toArray());
     }
 
-    public static function form(Schema $schema): Schema
+    public function form(Schema $schema): Schema
     {
         return SiteSettingsForm::configure($schema);
     }
 
-
+    public function getFormStatePath(): string
+    {
+        return 'data';
+    }
 
     public function save(): void
     {
