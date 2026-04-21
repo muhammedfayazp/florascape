@@ -25,7 +25,7 @@ class DDemoContentSeeder extends Seeder
                 'meta_description'  => 'Transform your outdoor spaces with Florascape. Abu Dhabi\'s leading landscaping company for garden design, pool maintenance, irrigation & hardscaping.',
                 'meta_keywords'     => 'landscaping UAE, garden design Abu Dhabi, pool maintenance, irrigation, hardscaping, outdoor maintenance',
                 'phone'             => '+971 50 123 4567',
-                'email'             => 'hello@florascape.ae',
+                'email'             => 'info@florascape.ae',
                 'address'           => "Plot 12, Al Quoz Industrial Area 3\nDubai, United Arab Emirates",
                 'facebook_url'      => 'https://facebook.com/florascape',
                 'instagram_url'     => 'https://instagram.com/florascape',
@@ -391,7 +391,7 @@ class DDemoContentSeeder extends Seeder
                 'content'     => [
                     ['title' => 'Address', 'description' => "Plot 12, Al Quoz Industrial Area 3\nDubai, United Arab Emirates"],
                     ['title' => 'Phone',   'description' => '+971 50 123 4567'],
-                    ['title' => 'Email',   'description' => 'hello@florascape.ae'],
+                    ['title' => 'Email',   'description' => 'info@florascape.ae'],
                     ['title' => 'Hours',   'description' => "Sat – Thu: 8:00 am – 6:00 pm\nFriday: Closed"],
                 ],
                 'is_active'  => true,
