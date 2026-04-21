@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: Deploy Laravel to EC2
 
 on:
   push:
@@ -10,10 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Deploy via SSH
+      - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -21,8 +18,25 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /var/www/florascape
-             git pull origin main
-             composer install --no-dev --optimize-autoloader
-             php artisan migrate --force
-             php artisan config:cache
-             sudo systemctl restart nginx
+
+            echo "Pulling latest code..."
+            git pull origin main
+
+            echo "Installing PHP dependencies..."
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+
+            echo "Running migrations..."
+            php artisan migrate --force
+
+            echo "Running Filament upgrade..."
+            php artisan filament:upgrade
+
+            echo "Clearing cache..."
+            php artisan optimize:clear
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+
+            echo "Restarting services..."
+            sudo systemctl restart nginx
+            sudo systemctl restart php8.3-fpm
