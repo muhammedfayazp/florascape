@@ -21,8 +21,8 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /var/www/florascape
-            git pull origin main
-            composer install --no-dev
-            php artisan migrate --force
-            php artisan config:cache
-            sudo systemctl restart nginx
+             git pull origin main
+             composer install --no-dev --optimize-autoloader
+             php artisan migrate --force
+             php artisan config:cache
+             sudo systemctl restart nginx
