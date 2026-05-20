@@ -5,9 +5,7 @@
         <div class="swiper-wrapper">
             @foreach ($slides as $slide)
                 @php
-                    $imageUrl = Str::startsWith($slide['image'], 'http')
-                        ? $slide['image']
-                        : \Illuminate\Support\Facades\Storage::url($slide['image']);
+                    $imageUrl = image_url($slide['image'] ?? null);
                 @endphp
 
                 <div class="swiper-slide relative" style="
@@ -28,7 +26,7 @@
                         @endif
 
                         @if(!empty($slide['redirect_link']))
-                            <a href="{{ $slide['redirect_link'] }}" 
+                            <a href="{{ $slide['redirect_link'] }}"
                                class="mt-4 inline-block bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200">
                                 Learn More
                             </a>

@@ -38,8 +38,7 @@
 
   {{-- Dynamic Favicon from Site Settings --}}
   @if($siteSettings && $siteSettings->favicon)
-    <link rel="icon" type="image/x-icon" href="{{ \Illuminate\Support\Facades\Storage::url($siteSettings->favicon) }}">
-    <link rel="shortcut icon" href="{{ \Illuminate\Support\Facades\Storage::url($siteSettings->favicon) }}">
+    <link rel="icon" type="image/x-icon" href="{{ image_url($siteSettings->favicon) }}">
   @else
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
   @endif
@@ -50,9 +49,7 @@
   <meta property="og:title" content="@yield('og_title', ($siteSettings->meta_title ?? 'Florascape - Premium Landscaping Services in UAE'))">
   <meta property="og:description" content="@yield('og_description', ($siteSettings->meta_description ?? 'Expert landscaping services transforming outdoor spaces across the UAE.'))">
   @php
-    $ogImage = $siteSettings && $siteSettings->og_image
-        ? \Illuminate\Support\Facades\Storage::url($siteSettings->og_image)
-        : asset('images/og-image.jpg');
+    $ogImage = image_url($siteSettings->og_image ?? null, asset('images/og-image.jpg'));
   @endphp
   <meta property="og:image" content="{{ $ogImage }}">
   <meta property="og:site_name" content="{{ $siteSettings->site_name ?? 'Florascape' }}">

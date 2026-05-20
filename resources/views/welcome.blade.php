@@ -4,18 +4,14 @@
 
 @php
     $heroSlidesData = collect($heroSlides?->slides ?? [])->map(function (array $slide) {
-        $slide['image'] = !empty($slide['image']) && !Str::startsWith($slide['image'], 'http')
-            ? \Illuminate\Support\Facades\Storage::url($slide['image'])
-            : ($slide['image'] ?? null);
+        $slide['image'] = image_url($slide['image'] ?? null);
         return $slide;
     })->values();
 
     $galleryCategoriesData = $categories->map(function ($category) {
         $categoryArray = $category->toArray();
         $categoryArray['projects'] = collect($categoryArray['projects'] ?? [])->map(function (array $project) {
-            $project['image'] = !empty($project['image']) && !Str::startsWith($project['image'], 'http')
-                ? \Illuminate\Support\Facades\Storage::url($project['image'])
-                : ($project['image'] ?? null);
+            $project['image'] = image_url($project['image'] ?? null);
             return $project;
         })->values()->all();
         return $categoryArray;
@@ -65,10 +61,7 @@
         <div class="about-content">
             <div class="about-image">
                 @php
-                    $aboutImage = $sections['about_us']->image;
-                    $aboutImageUrl = $aboutImage && !Str::startsWith($aboutImage, 'http')
-                        ? \Illuminate\Support\Facades\Storage::url($aboutImage)
-                        : $aboutImage;
+                    $aboutImageUrl = image_url($sections['about_us']->image, 'https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=1200&q=80');
                 @endphp
                 <div class="about-img-wrapper">
                     <img loading="lazy"
@@ -162,10 +155,7 @@
         <div class="why-content">
             <div class="why-image">
                 @php
-                    $whyImage = $sections['why_choose_us']->image;
-                    $whyImageUrl = $whyImage && !Str::startsWith($whyImage, 'http')
-                        ? \Illuminate\Support\Facades\Storage::url($whyImage)
-                        : $whyImage;
+                    $whyImageUrl = image_url($sections['why_choose_us']->image, 'https://images.unsplash.com/photo-1600596542815-e495d915993a?auto=format&fit=crop&w=1000&q=80');
                 @endphp
                 <img loading="lazy"
                     src="{{ $whyImageUrl ?? 'https://images.unsplash.com/photo-1600596542815-e495d915993a?auto=format&fit=crop&w=1000&q=80' }}"

@@ -29,7 +29,8 @@
     },
     "autoload": {
         "files": [
-            "app/Helpers/settings.php"
+            "app/Helpers/settings.php",
+            "app/Helpers/image.php"
         ],
         "psr-4": {
             "App\\": "app/",
